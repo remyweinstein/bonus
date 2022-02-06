@@ -1,0 +1,9 @@
+export const cardImageW = 512;
+export const cardImageH = 328;
+export const cardImageSRC = "/assets/card_back.jpg";
+export const LS_LINK = "LS_walletData_081221_01";
+// export const API_URL = "https://bonus.stolica-dv.ru/api";
+export const API_URL = "https://bonus.stolica-dv.ru/api";
+export const TERMS_URL = "/politika-konfidentsialnosti";
+export const RULES_URL = "/pravila";
+export const LS_TOKEN_LINK = "LS_BearerToken";

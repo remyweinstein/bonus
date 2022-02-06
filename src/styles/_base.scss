@@ -1,0 +1,25 @@
+/* ===========================
+   Base
+   =========================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* user-select: none; */
+  font-family: "Open Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+
+.main-app-space {
+  background: url(~assets/bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

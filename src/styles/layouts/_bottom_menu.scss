@@ -1,0 +1,18 @@
+/* ==|========================
+   Layouts/Bottom_Menu
+   =========================== */
+
+.bottom-nav-element {
+
+    .main {
+        &>i {
+            font-size: 4rem;
+        }
+        
+        &>div {
+            font-weight: bold;
+        }
+    }
+    
+}
+
