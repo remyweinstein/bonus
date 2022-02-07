@@ -4,6 +4,171 @@ import * as Conf from '@/js/config.js'
 import * as Storage from '@/js/libs/storage.js'
 import * as Popup from '@/js/libs/popups.js'
 import * as Util from '@/js/libs/functions.js'
+import * as Animate from '@/js/libs/animate.js'
+
+
+export async function reg() {
+    let trueDate = null;
+
+    if (reg_birthdate.value) {
+        let td = reg_birthdate.value.split("-");
+        trueDate = [td[2], td[1], td[0]].join("-");
+    }
+
+    lastPhone = reg_phone.value;
+
+    reg_button.disabled = true;
+    Util.showLoader();
+
+    let response = await fetch(Conf.API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        },
+        body: JSON.stringify({
+            "method": "registration",
+            "data": {
+                "phone": reg_phone.value,
+                "pass": reg_pass.value,
+                "firstname": reg_firstname.value,
+                "birthdate": trueDate,
+                "discount": (discount.checked ? 1 : 0),
+                "email": reg_email.value,
+                "city": city.value
+            }
+        })
+    });
+
+    let result = await response.json();
+
+    reg_button.disabled = false;
+    Util.hideLoader();
+
+    if (result.status) {
+        if (result.data && result.data.need_confirmation) {
+            // Скрываем блок регистрации
+            registration_cont.style.display = "none";
+
+            // Демонстрируем блок ввода подтверждения
+            reg_confirmation.style.display = "";
+            reg_confirmation_code.scrollIntoView();
+            reg_confirmation_code.classList.toggle("fail");
+            reg_confirmation_code.focus();
+            reg_confirmation_code_popup.classList.toggle("show");
+
+            // Запускаем таймер отсчета для повторной отправки
+            setConfirmationTimeout(result);
+        }
+    } else {
+        if (result.description)
+            Popup.showPopup("", result.description);
+    }
+}
+
+function restartResetConfirmationTimer(seconds) {
+    resetCodeTimerValue = seconds - 1;
+
+    reset_confirmation_time.style.display = "";
+    reset_confirmation_time.innerText = resetCodeTimerValue + " сек.";
+
+    if (resetCodeTimer)
+        clearInterval(resetCodeTimer);
+    resetCodeTimer = setInterval(() => {
+        reset_confirmation_time.style.display = "";
+        reset_confirmation_time.innerText = resetCodeTimerValue + " сек.";
+        resetCodeTimerValue--;
+
+        if (!resetCodeTimerValue) {
+            reset_button.disabled = false;
+            reset_confirmation_time.style.display = "none";
+            if (resetCodeTimer)
+                clearInterval(resetCodeTimer);
+        }
+    }, 1000);
+}
+
+function setConfirmationTimeout(result) {
+    confirmation_button_reset.style.display = "none";
+    secondsLeft = result.data.seconds_left;
+    reg_confirmation_code_popup.innerText = result.description;
+    reg_confirmation_info.innerText = result.description;
+    reg_confirmation_remind.innerText = "Повторная отправка будет доступна через " + secondsLeft + " сек.";
+    if (secondsInterval)
+        clearInterval(secondsInterval);
+    secondsInterval = setInterval(() => {
+        secondsLeft--;
+        reg_confirmation_remind.innerText = "Повторная отправка будет доступна через " + secondsLeft + " сек.";
+        if (secondsLeft <= 0) {
+            clearInterval(secondsInterval);
+            reg_confirmation_remind.innerText = "";
+
+            confirmation_button_reset.style.display = "";
+        }
+    }, 1000);
+}
+
+export async function getReferLink() {
+    let body = {
+        "method": "getReferLink"
+    };
+
+    let response = await fetch(Conf.API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "Authorization": "Bearer " + Storage.getBearerToken()
+        },
+        body: JSON.stringify(body)
+    });
+
+    let result = await response.json();
+
+    return result;
+}
+
+export async function getResetConfirmationCode() {
+    if (reset_phone.value) {
+        reset_button.disabled = true;
+
+        let body = {
+            "method": "getResetConfirmationCode",
+            "data": {
+                "phone": reset_phone.value
+            }
+        };
+
+        let response = await fetch(Conf.API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8"
+            },
+            body: JSON.stringify(body)
+        });
+
+        let result = await response.json();
+
+        if (result.status) {
+            reset_confirmation.style.opacity = 0;
+            reset_confirmation.style.display = "";
+
+            Animate.animate({
+                duration: 1000,
+                timing: Animate.quad,
+                draw: function (progress, options) {
+                    reset_confirmation.style.opacity = progress;
+                },
+                callback: function (options) { }
+            });
+
+            reset_confirmation_info.innerText = result.description;
+            if (result.data.seconds_left)
+                restartResetConfirmationTimer(result.data.seconds_left);
+        } else {
+            reset_button.disabled = false;
+            Popup.showPopup("Внимание", result.description);
+        }
+    }
+}
 
 export function checkAuthorization() {
     return fetch(Conf.API_URL, {

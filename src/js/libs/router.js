@@ -171,7 +171,7 @@ export function drawSection(section) {
 }
 
 export function renderReferSection() {
-  getReferLink().then((response) => {
+  Conn.getReferLink().then((response) => {
     if (response.status) {
       if (!referQr.children.length) {
         let qrCanvas = document.createElement("canvas");
