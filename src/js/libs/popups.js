@@ -4,7 +4,6 @@ import * as Util from '@/js/libs/functions.js'
 import * as Animate from '@/js/libs/animate.js'
 
 export function initPopups() {
-    console.log('init popup');
     let popups = document.getElementsByClassName("popup-text");
     for (let index = 0; index < popups.length; index++) {
         const element = popups[index];

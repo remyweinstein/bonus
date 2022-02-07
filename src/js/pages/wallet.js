@@ -15,18 +15,27 @@ export function updateWalletData(onlyBalance) {
     }
     
     let lastId = 0;
-    let walletData = JSON.parse(localStorage.getItem(Conf.LS_LINK));
-    
-    
+    let walletData = JSON.parse(Storage.getLsLink());
+        
+    //
     if (walletData) {
         drawWalletData(walletData);
         drawPurchases(walletData.purchases);
-        
         if (!onlyBalance) {
             if (walletData.purchases.length) {
                 lastId = walletData.purchases[0].id;
             }
         }
+    //
+    //if (walletData) {
+    //    if (onlyBalance) {
+    //        drawWalletData(walletData);
+    //        drawPurchases(walletData.purchases);
+    //    } else {
+    //        if (walletData.purchases.length) {
+    //            lastId = walletData.purchases[0].id;
+    //        }
+    //    }
     } else {
         walletData = {
             balance: 0,
@@ -60,17 +69,17 @@ export function updateWalletData(onlyBalance) {
             }
 
             if (result.data.cardNumber) {
-                localStorage.setItem(Conf.LS_LINK, JSON.stringify(walletData));
+                Storage.setLsLink(JSON.stringify(walletData));
             }
 
-            if (onlyBalance || localStorage.getItem("section") == "wallet") {
+            if (onlyBalance || Storage.getSection() == "wallet") {
                 walletUpdater = setTimeout(updateWalletData, 15000);
             }
         }
     }).catch(error => {
         console.warn(error);
         //Popup.showPopup("Внимание", "Произошла ошибка при загрузке транзакций, попробуйте позже.");
-        if (onlyBalance || localStorage.getItem("section") == "wallet") walletUpdater = setTimeout(updateWalletData, 15000);
+        if (onlyBalance || Storage.getSection() == "wallet") walletUpdater = setTimeout(updateWalletData, 15000);
     });
 }
 

@@ -5,6 +5,7 @@ import * as Router from '@/js/libs/router.js'
 import * as Conn from '@/js/libs/connections.js'
 import * as Util from '@/js/libs/functions.js'
 import * as Conf from '@/js/config.js'
+import * as Storage from '@/js/libs/storage.js'
 
 export function modifyInput(el) {
   if (el.value.length == 1 && +el.value[0] == 8) el.value = "+7-";
@@ -25,7 +26,7 @@ export function removeChildrens(element) {
 }
 
 export function confirmAdult() {
-  drawSection(localStorage.getItem("section"));
+  drawSection(Storage.getSection());
 }
 
 export function showLoader() {

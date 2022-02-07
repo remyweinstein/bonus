@@ -160,13 +160,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Personal.changeCardType();
 
     reg_button.addEventListener("click", (e) => {
-        if (checkReg())
+        if (checkReg()) {
             Popup.showPopup("Подтверждение звонком", "Вам позвонят на номер\n" + reg_phone.value, "На звонок отвечать не требуется, введите последние четыре цифры номера телефона с которого совершён звонок", "Запросить звонок", reg);
+        }
     });
 
     reset_button.addEventListener("click", (e) => {
-        if (canGetResetConfirmationCode())
+        if (canGetResetConfirmationCode()) {
             Popup.showPopup("Подтверждение звонком", "Ожидайте звонок на номер:\n" + reg_phone.value, "На звонок отвечать не требуется, введите последние 4-ре цифры номера телефона входящего звонка.", "Запросить звонок", getResetConfirmationCode);
+        }
     });
 
     document.getElementById("transactions-details-button").addEventListener("click", (e) => {
@@ -176,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Выбор города
     store_cities.addEventListener("change", (e) => {
-        Stores.getStoresList(store_cities.value)
+        Stores.getStoresList(store_cities.value);
     });
 
     $('#auth_phone').mask('+7-000-000-00-00');
@@ -215,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     //Маршрутизация
-    let section = localStorage.getItem("section");
+    let section = Storage.getSection();
 
     Conn.checkAuthorization().then(result => {
         if (result.status) {
@@ -225,8 +227,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 feedback_form.src += "&answer_short_text_7059155=" + result.data.phone + (userName ? "&answer_short_text_96201=" + userName : "");
             }
 
-            if (["wallet", "news", "personal", "stores", "refer"].indexOf(section) == -1)
+            if (["wallet", "news", "personal", "stores", "refer"].indexOf(section) == -1) {
                 section = "wallet";
+            }
         } else {
             section = (section ? section : "adult");
         }

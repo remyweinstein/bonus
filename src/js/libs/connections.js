@@ -383,9 +383,8 @@ export async function auth() {
 
         if (result.status) {
             Storage.clearAll();
-
-            localStorage.setItem("section", "wallet");
-            localStorage.setItem(Conf.LS_TOKEN_LINK, result.data.token);
+            Storage.setSection("wallet");
+            Storage.setBearerToken(result.data.token);
 
             location.reload();
             // drawSection("wallet");

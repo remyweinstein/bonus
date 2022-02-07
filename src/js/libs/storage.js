@@ -7,7 +7,23 @@ export function getBearerToken() {
 }
 
 export function setBearerToken(value) {
-    localStorage.setItem(Conf.LS_TOKEN_LINK, value)
+    localStorage.setItem(Conf.LS_TOKEN_LINK, value);
+}
+
+export function getSection() {
+    return localStorage.getItem("section");
+}
+
+export function setSection(value) {
+    localStorage.setItem("section", value);
+}
+
+export function getLsLink() {
+    return localStorage.getItem(Conf.LS_LINK);
+}
+
+export function setLsLink(value) {
+    localStorage.setItem(Conf.LS_LINK, value);
 }
 
 export function clearAll() {

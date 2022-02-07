@@ -5,6 +5,7 @@ import * as Util from '@/js/libs/functions.js'
 import * as Conn from '@/js/libs/connections.js'
 import * as Popup from '@/js/libs/popups.js'
 import * as Animate from '@/js/libs/animate.js'
+import * as Storage from '@/js/libs/storage.js'
 
 import * as Personal from '@/js/pages/personal.js'
 import * as News from '@/js/pages/news.js'
@@ -77,7 +78,7 @@ let sections = {
 };
 
 export function routePrevSection() {
-  let section = localStorage.getItem("section");
+  let section = Storage.getSection();
   if (sections[section] && sections[section].prevSection) {
       drawSection(sections[section].prevSection);
   }
@@ -85,8 +86,7 @@ export function routePrevSection() {
 
 export function drawSection(section) {
   if (!section) section = "adult";
-  prevSection = localStorage.getItem("section");
-  console.log(section);
+  prevSection = Storage.getSection();
 
   switch (section) {
     default: {
@@ -167,7 +167,7 @@ export function drawSection(section) {
     if (document.getElementById("bottom-nav").children[i].getAttribute("section") == section) document.getElementById("bottom-nav").children[i].classList.add("current-section");
   }
 
-  localStorage.setItem("section", section);
+  Storage.setSection(section);
 }
 
 export function renderReferSection() {
