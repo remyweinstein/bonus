@@ -50,13 +50,21 @@ export function updateWalletData(onlyBalance) {
     // Сперва подгружаем баланс и номер карты, затем отдельно транзакции
     getWalletData(lastId, onlyBalance).then(result => {
         if (result.status) {
-            if (walletData.discountValue != result.data.discountValue || walletData.discount != result.data.discount || walletData.cardNumber != result.data.cardNumber || walletData.balance != result.data.balance || walletData.preferredDiscount != result.data.preferredDiscount) {
-                walletData.cardNumber = result.data.cardNumber;
-                walletData.balance = result.data.balance;
-                walletData.discount = result.data.discount;
-                walletData.preferredDiscount = result.data.preferredDiscount;
-                walletData.discountValue = result.data.discountValue;
-                drawWalletData(walletData);
+            if (walletData.discountValue !== result.data.discountValue 
+                    || 
+                walletData.discount !== result.data.discount 
+                    || 
+                walletData.cardNumber !== result.data.cardNumber 
+                    || 
+                walletData.balance !== result.data.balance 
+                    || 
+                walletData.preferredDiscount !== result.data.preferredDiscount) {
+                    walletData.cardNumber = result.data.cardNumber;
+                    walletData.balance = result.data.balance;
+                    walletData.discount = result.data.discount;
+                    walletData.preferredDiscount = result.data.preferredDiscount;
+                    walletData.discountValue = result.data.discountValue;
+                    drawWalletData(walletData);
             }
 
             // Кешируем чеки при появлении новых
@@ -89,10 +97,10 @@ function drawWalletData(walletData) {
         Animate.animate({
             duration: 1000,
             timing: Animate.quad,
-            draw: function (progress, options) {
+            draw: function (progress) {
                 cardNumber.style.opacity = progress;
             },
-            callback: function (options) { }
+            callback: function () { }
         });
 
         if (qrcode.codeNumber != walletData.cardNumber) {
@@ -362,10 +370,10 @@ function drawBonusCard(cardNumber) {
         Animate.animate({
             duration: 1000,
             timing: Animate.quad,
-            draw: function (progress, options) {
+            draw: function (progress) {
                 qrcode.style.opacity = progress;
             },
-            callback: function (options) { }
+            callback: function () { }
         });
 
         let cardCanvas = document.createElement("canvas");
