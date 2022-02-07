@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Переход на пластиковую карту
     personal_changeCard_button.addEventListener("click", () => {
-        changeCard();
+        Personal.changeCard();
     });
 
     // Смена пароля
@@ -102,11 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
         personal_new_pass_confirmation_popup.classList.remove("show");
     });
     personal_changePassword_button.addEventListener("click", () => {
-        changeProfileData();
+        Personal.changeProfileData();
     });
 
     // Смена типа карты
-    //$('.system_tabs-head-item-change').click(function (){changeCardType();});
+    //$('.system_tabs-head-item-change').click(function (){Personal.changeCardType();});
 
     // Привязка пластиковой карты
     set_card.addEventListener("click", () => Personal.setCard());
@@ -155,9 +155,9 @@ document.addEventListener("DOMContentLoaded", function () {
         personal_new_pass.type = (personal_new_pass.type == "password" ? "text" : "password");
         update_pass_toggle_confirm.style.color = (personal_new_pass_confirmation.type == "password" ? "black" : "#4eb5e6");
     });
-    // reg_card_type_digital.addEventListener("change", (e) => {changeCardType();});
-    // reg_card_type_analog.addEventListener("change", (e) => {changeCardType();});
-    // changeCardType();
+    // reg_card_type_digital.addEventListener("change", (e) => {Personal.changeCardType();});
+    // reg_card_type_analog.addEventListener("change", (e) => {Personal.changeCardType();});
+    // Personal.changeCardType();
 
     reg_button.addEventListener("click", (e) => {
         if (checkReg())

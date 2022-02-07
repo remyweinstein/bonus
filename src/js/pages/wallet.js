@@ -414,6 +414,6 @@ async function getWalletData(lastId, onlyBalance) {
             status: false,
             description: error.message,
             error: error
-        }
+        };
     });
 }

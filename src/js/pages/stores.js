@@ -13,7 +13,7 @@ export function updateStoresData() {
                     option.value = city.id;
                     option.innerText = city.name;
                     store_cities.appendChild(option);
-                })
+                });
                 city_id = result.cities[0].id;
                 getStoresList(city_id);
             }
@@ -39,7 +39,7 @@ export function getStores() {
             status: false,
             description: error.message,
             error: error
-        }
+        };
     });
 }
 

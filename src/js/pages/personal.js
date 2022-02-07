@@ -44,7 +44,7 @@ export function updatePersonalData() {
     });
 }
 
-export function getProfileData() {
+function getProfileData() {
     return fetch(Conf.API_URL, {
         method: "POST",
         headers: {
@@ -59,11 +59,11 @@ export function getProfileData() {
             status: false,
             description: error.message,
             error: error
-        }
+        };
     });
 }
 
-export async function changePassword() {
+async function changePassword() {
     let result = false;
     if (personal_new_pass.value.length == 0) {
         return result;

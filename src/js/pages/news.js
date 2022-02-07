@@ -20,7 +20,7 @@ export function updateNews() {
     });
 }
 
-export function drawNews(newsList) {
+function drawNews(newsList) {
     let container = document.getElementById("news").getElementsByClassName("container")[0];
 
     newsList.forEach(news => {
@@ -43,7 +43,7 @@ export function drawNews(newsList) {
             document.getElementById("overlay-news-image").scrollIntoView();
 
             document.getElementById("overlay-news").classList.add("animate__animated", "animate__fadeIn");
-        })
+        });
 
         let newsImageElement = document.createElement("img");
         newsImageElement.classList.add("news-image");
@@ -73,7 +73,7 @@ export function drawNews(newsList) {
     });
 }
 
-export function getNews(lastId, limit) {
+function getNews(lastId, limit) {
     return fetch(Conf.API_URL, {
         method: "POST",
         headers: {
@@ -92,6 +92,6 @@ export function getNews(lastId, limit) {
             status: false,
             description: error.message,
             error: error
-        }
+        };
     });
 }
