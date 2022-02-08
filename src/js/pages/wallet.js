@@ -80,15 +80,35 @@ export function updateWalletData(onlyBalance) {
                 Storage.setLsLink(JSON.stringify(walletData));
             }
 
-            if (onlyBalance || Storage.getSection() == "wallet") {
+            if (onlyBalance || Storage.getSection() === "wallet") {
                 walletUpdater = setTimeout(updateWalletData, 15000);
             }
         }
     }).catch(error => {
         console.warn(error);
         //Popup.showPopup("Внимание", "Произошла ошибка при загрузке транзакций, попробуйте позже.");
-        if (onlyBalance || Storage.getSection() == "wallet") walletUpdater = setTimeout(updateWalletData, 15000);
+        if (onlyBalance || Storage.getSection() === "wallet") walletUpdater = setTimeout(updateWalletData, 15000);
     });
+}
+
+function checkChange(walletData, result) {
+    if (walletData.discountValue !== result.data.discountValue 
+            || 
+        walletData.discount !== result.data.discount 
+            || 
+        walletData.cardNumber !== result.data.cardNumber 
+            || 
+        walletData.balance !== result.data.balance 
+            || 
+        walletData.preferredDiscount !== result.data.preferredDiscount) {
+            walletData.cardNumber = result.data.cardNumber;
+            walletData.balance = result.data.balance;
+            walletData.discount = result.data.discount;
+            walletData.preferredDiscount = result.data.preferredDiscount;
+            walletData.discountValue = result.data.discountValue;
+            drawWalletData(walletData);
+    }
+
 }
 
 function drawWalletData(walletData) {

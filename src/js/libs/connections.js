@@ -257,7 +257,7 @@ export async function updateCities() {
                 option.value = element.id;
                 option.innerText = element.title;
                 option.setAttribute("default-discount", element.default_discount);
-                if (element.status == 2)
+                if (element.status === 2)
                     option.selected = "selected";
                 city.appendChild(option);
             });
@@ -300,7 +300,7 @@ export async function confirmation() {
         Util.hideLoader();
 
         if (result.status) {
-            if (result.data.setNewPassword == undefined) {
+            if (result.data.setNewPassword === undefined) {
                 drawSection("reg_success");
             } else {
                 drawSection("intro");
@@ -343,14 +343,14 @@ export async function confirmationReset() {
 }
 
 export async function auth() {
-    if (auth_phone.value == "") {
+    if (auth_phone.value === "") {
         auth_phone.scrollIntoView();
         auth_phone.classList.toggle("fail");
         auth_phone.focus();
         auth_phone_popup.classList.toggle("show");
         return;
     }
-    if (auth_pass.value == "") {
+    if (auth_pass.value === "") {
         auth_pass.scrollIntoView();
         auth_pass.classList.toggle("fail");
         auth_pass.focus();

@@ -106,7 +106,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Смена типа карты
-    //$('.system_tabs-head-item-change').click(function (){Personal.changeCardType();});
+    /*
+    document.querySelectorAll(".system_tabs-head-item-change").forEach(item => {
+      item.addEventListener("click", () => {
+        Personal.changeCardType();
+      });
+    });
+     */
 
     // Привязка пластиковой карты
     set_card.addEventListener("click", () => Personal.setCard());
@@ -125,35 +131,35 @@ document.addEventListener("DOMContentLoaded", function () {
         Util.modifyInput(e.target)
     });
     reset_confirmation_code.addEventListener("input", (e) => {
-        reset_confirmation_button.disabled = (reset_confirmation_code.value.length == 4 ? false : true);
+        reset_confirmation_button.disabled = (reset_confirmation_code.value.length === 4 ? false : true);
     });
     $('#reset_phone').mask('+7-000-000-00-00');
     $('#reset_confirmation_code').mask('0000');
 
     auth_pass_toggle.addEventListener("click", (e) => {
-        auth_pass.type = (auth_pass.type == "password" ? "text" : "password");
-        auth_pass_toggle.style.color = (auth_pass.type == "password" ? "black" : "#4eb5e6");
+        auth_pass.type = (auth_pass.type === "password" ? "text" : "password");
+        auth_pass_toggle.style.color = (auth_pass.type === "password" ? "black" : "#4eb5e6");
     });
     reg_pass_toggle.addEventListener("click", (e) => {
-        reg_pass.type = (reg_pass.type == "password" ? "text" : "password");
-        reg_pass_confirm.type = (reg_pass_confirm.type == "password" ? "text" : "password");
-        reg_pass_toggle.style.color = (reg_pass.type == "password" ? "black" : "#4eb5e6");
+        reg_pass.type = (reg_pass.type === "password" ? "text" : "password");
+        reg_pass_confirm.type = (reg_pass_confirm.type === "password" ? "text" : "password");
+        reg_pass_toggle.style.color = (reg_pass.type === "password" ? "black" : "#4eb5e6");
     });
     reg_pass_toggle_confirm.addEventListener("click", (e) => {
-        reg_pass_confirm.type = (reg_pass_confirm.type == "password" ? "text" : "password");
-        reg_pass.type = (reg_pass.type == "password" ? "text" : "password");
-        reg_pass_toggle_confirm.style.color = (reg_pass_confirm.type == "password" ? "black" : "#4eb5e6");
+        reg_pass_confirm.type = (reg_pass_confirm.type === "password" ? "text" : "password");
+        reg_pass.type = (reg_pass.type === "password" ? "text" : "password");
+        reg_pass_toggle_confirm.style.color = (reg_pass_confirm.type === "password" ? "black" : "#4eb5e6");
     });
 
     update_pass_toggle.addEventListener("click", (e) => {
-        personal_new_pass.type = (personal_new_pass.type == "password" ? "text" : "password");
-        personal_new_pass_confirmation.type = (personal_new_pass_confirmation.type == "password" ? "text" : "password");
-        update_pass_toggle.style.color = (personal_new_pass.type == "password" ? "black" : "#4eb5e6");
+        personal_new_pass.type = (personal_new_pass.type === "password" ? "text" : "password");
+        personal_new_pass_confirmation.type = (personal_new_pass_confirmation.type === "password" ? "text" : "password");
+        update_pass_toggle.style.color = (personal_new_pass.type === "password" ? "black" : "#4eb5e6");
     });
     update_pass_toggle_confirm.addEventListener("click", (e) => {
-        personal_new_pass_confirmation.type = (personal_new_pass_confirmation.type == "password" ? "text" : "password");
-        personal_new_pass.type = (personal_new_pass.type == "password" ? "text" : "password");
-        update_pass_toggle_confirm.style.color = (personal_new_pass_confirmation.type == "password" ? "black" : "#4eb5e6");
+        personal_new_pass_confirmation.type = (personal_new_pass_confirmation.type === "password" ? "text" : "password");
+        personal_new_pass.type = (personal_new_pass.type === "password" ? "text" : "password");
+        update_pass_toggle_confirm.style.color = (personal_new_pass_confirmation.type === "password" ? "black" : "#4eb5e6");
     });
     // reg_card_type_digital.addEventListener("change", (e) => {Personal.changeCardType();});
     // reg_card_type_analog.addEventListener("change", (e) => {Personal.changeCardType();});
@@ -172,8 +178,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("transactions-details-button").addEventListener("click", (e) => {
-        $("#transactions").toggleClass("transactionsOpen");
-        $("#transactions-details-button").text((transactions.classList.contains("transactionsOpen")) ? "скрыть детализацию" : "открыть детализацию");
+        document.querySelector("#transactions").classList.toggle("transactionsOpen");
+        document.querySelector("#transactions-details-button").innerHTML = ((transactions.classList.contains("transactionsOpen")) ? "скрыть детализацию" : "открыть детализацию");
     });
 
     // Выбор города
@@ -191,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
         elements[i].addEventListener("click", function (e) {
             if (e.currentTarget.getAttribute("section"))
                 Router.drawSection(e.currentTarget.getAttribute("section"));
-            $(".store_map").remove();
+                Util.remove(document.querySelectorAll(".store_map"));
         });
     }
 
@@ -227,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 feedback_form.src += "&answer_short_text_7059155=" + result.data.phone + (userName ? "&answer_short_text_96201=" + userName : "");
             }
 
-            if (["wallet", "news", "personal", "stores", "refer"].indexOf(section) == -1) {
+            if (["wallet", "news", "personal", "stores", "refer"].indexOf(section) === -1) {
                 section = "wallet";
             }
         } else {
@@ -313,26 +319,33 @@ function attentionFocus(element) {
 }
 
 function dropFail(element) {
-    if (element.value && element.classList.contains("fail"))
+    if (element.value && element.classList.contains("fail")) {
         element.classList.remove("fail");
+    }
 }
 
-$(".system_tabs-head-item").click(function () {
-    $(this).addClass("tab_h_active");
-    $(this).siblings(".system_tabs-head-item").removeClass("tab_h_active");
-    let tabIndex = $(".system_tabs-head-item").index(this);
-    tabIndex++;
-
-    $(".system_tabs-content-item").removeClass("tab_c_active");
-    $(".system_tabs-content-item:nth-child(" + tabIndex + ")").addClass("tab_c_active");
+document.querySelectorAll(".system_tabs-head-item").forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.add("tab_h_active");
+        item.parentNode.querySelectorAll(".system_tabs-head-item").forEach(function(el) {
+            el.classList.remove("tab_h_active");
+        });
+        document.querySelectorAll(".system_tabs-head-item").forEach(function(el) {
+            el.classList.remove("tab_c_active");
+        });
+        item.classList.add("tab_c_active");
+    });
 });
 
-$(".system_tabs-head-item-change").click(function () {
-    $(this).addClass("tab_h_active");
-    $(this).siblings(".system_tabs-head-item-change").removeClass("tab_h_active");
-    let tabIndex = $(".system_tabs-head-item-change").index(this);
-    tabIndex++;
-
-    $(".system_tabs-content-item-change").removeClass("tab_c_active");
-    $(".system_tabs-content-item-change:nth-child(" + tabIndex + ")").addClass("tab_c_active");
+document.querySelectorAll(".system_tabs-head-item-change").forEach(item => {
+    item.addEventListener("click", () => {
+        item.parentNode.querySelectorAll(".system_tabs-head-item-change").forEach(function(el) {
+            el.classList.remove("tab_h_active");
+        });
+        item.classList.add("tab_h_active");
+        document.querySelectorAll(".system_tabs-head-item-change").forEach(function(el) {
+            el.classList.remove("tab_c_active");
+        });
+        item.classList.add("tab_c_active");
+    });
 });

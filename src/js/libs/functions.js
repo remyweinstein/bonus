@@ -8,7 +8,7 @@ import * as Conf from '@/js/config.js'
 import * as Storage from '@/js/libs/storage.js'
 
 export function modifyInput(el) {
-  if (el.value.length == 1 && +el.value[0] == 8) el.value = "+7-";
+  if (el.value.length === 1 && +el.value[0] === 8) el.value = "+7-";
 }
 
 export function openNav() {
@@ -35,7 +35,7 @@ export function showLoader() {
 }
 
 export function hideLoader(instant) {
-  if (instant == undefined) instant = false;
+  if (instant === undefined) instant = false;
 
   if (instant) {
     loader.style.display = "none";
@@ -92,4 +92,10 @@ export function showTerms() {
 export function showRules() {
     document.getElementById("terms").style.display = "";
     document.getElementById("terms").getElementsByTagName("iframe")[0].src = Conf.RULES_URL;
+}
+
+export function remove(els) {
+    els.forEach(function(item) {
+        item.parentNode.removeChild(item);
+    });
 }

@@ -28,7 +28,11 @@ export function updatePersonalData() {
                 personal_phone.innerText = '+' + a[0] + ' (' + a[1] + a[2] + a[3] + ') ' + a[4] + a[5] + a[6] + '-' + a[7] + a[8] + '-' + a[9] + a[10];
             }
 
-            if (result.data.card_status !== 1) $("#replace_card").remove();
+            if (result.data.card_status !== 1) {
+                document.querySelectorAll("#replace_card").forEach(function(item) {
+                    item.parentNode.removeChild(item);
+                });
+            }
 
             personalCardType.innerText = (result.data.preferred_discount) ? "ДИСКОНТНАЯ" : "БОНУСНАЯ";
 
@@ -65,7 +69,7 @@ function getProfileData() {
 
 async function changePassword() {
     let result = false;
-    if (personal_new_pass.value.length == 0) {
+    if (personal_new_pass.value.length === 0) {
         return result;
     }
     if (personal_new_pass.value.length > 0 && personal_new_pass.value.length < 6) {

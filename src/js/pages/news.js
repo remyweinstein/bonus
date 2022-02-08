@@ -26,8 +26,8 @@ function drawNews(newsList) {
     newsList.forEach(news => {
         let dateObj = new Date((news.date).replace(new RegExp("-", 'g'), "/"));
         let date = [
-            (String(dateObj.getDate()).length == 1 ? "0" : "") + String(dateObj.getDate()),
-            (String(dateObj.getMonth() + 1).length == 1 ? "0" : "") + String(dateObj.getMonth() + 1),
+            (String(dateObj.getDate()).length === 1 ? "0" : "") + String(dateObj.getDate()),
+            (String(dateObj.getMonth() + 1).length === 1 ? "0" : "") + String(dateObj.getMonth() + 1),
             String(dateObj.getFullYear())
         ].join(".");
 

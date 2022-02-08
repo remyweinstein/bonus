@@ -59,9 +59,11 @@ export async function getStoresList(city_id) {
 
     let result = await response.json();
 
-    $("#storesList").html('');
+    document.querySelector("#storesList").innerHTML = "";
 
     result.data.forEach(city => {
-        $("#storesList").append("<div class='store_block' data-rsa='" + city.rsa_id + "' data-coordinates='" + city.coordinates + "' data-phone='" + city.phone + "' data-city='" + city.city_name + "'><div class='store_block-title'>" + city.store_name + "</div><div class='store_block-shedule'>" + city.shedule + "</div><span class='show_store'>></span></div>");
+        let div = document.createElement("div");
+        div.innerHTML = "<div class='store_block' data-rsa='" + city.rsa_id + "' data-coordinates='" + city.coordinates + "' data-phone='" + city.phone + "' data-city='" + city.city_name + "'><div class='store_block-title'>" + city.store_name + "</div><div class='store_block-shedule'>" + city.shedule + "</div><span class='show_store'>></span></div>";
+        document.querySelector("#storesList").append(div.children[0]);
     });
 }

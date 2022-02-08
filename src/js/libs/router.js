@@ -106,7 +106,7 @@ export function drawSection(section) {
 
         prem.checked = true;
         discount.checked = false;
-        document.getElementById("loyalty-system").style.display = (city.options[city.options.selectedIndex].getAttribute("default-discount") == 0 ? "none" : "");  
+        document.getElementById("loyalty-system").style.display = (city.options[city.options.selectedIndex].getAttribute("default-discount") === 0 ? "none" : "");  
       });
 
       break;
@@ -159,12 +159,12 @@ export function drawSection(section) {
   document.getElementById("top-nav-msg").style.display = (sections[section] && !sections[section].prevSection ? "" : "none");
   document.getElementById("top-nav-title").innerText = sections[section].title;
   document.getElementById("top-nav-menu").style.display = (sections[section] && sections[section].showMenu ? "" : "none");
-  document.getElementById("top-nav-close").style.display = (["alerts"].indexOf(section) == -1 ? "none" : "");
+  document.getElementById("top-nav-close").style.display = (["alerts"].indexOf(section) === -1 ? "none" : "");
   document.getElementById("bottom-nav").style.display = (sections[section] && sections[section].showMenu ? "" : "none");
 
   for (let i = 0; i < document.getElementById("bottom-nav").children.length; i++) {
     document.getElementById("bottom-nav").children[i].classList.remove("current-section");
-    if (document.getElementById("bottom-nav").children[i].getAttribute("section") == section) document.getElementById("bottom-nav").children[i].classList.add("current-section");
+    if (document.getElementById("bottom-nav").children[i].getAttribute("section") === section) document.getElementById("bottom-nav").children[i].classList.add("current-section");
   }
 
   Storage.setSection(section);
