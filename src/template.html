@@ -73,11 +73,11 @@
             <i id="topnav-nav-menu" class="fa fa-bars"  data-click="Util.closeNav"></i>
           </div>
           <div class="overlay-content">
-            <div class="bottom-nav-element" section="wallet" data-click="Util.closeNav">Кошелек</div>
-            <div class="bottom-nav-element" section="news"  data-click="Util.closeNav">Акции</div>
-            <div class="bottom-nav-element" section="stores"  data-click="Util.closeNav">Магазины</div>
-            <div class="bottom-nav-element" section="personal"  data-click="Util.closeNav">Профиль</div>
-            <div class="bottom-nav-element" section="refer"  data-click="Util.closeNav">Пригласить друга</div>
+            <div data-click="Util.closeNav" data-link-section="wallet">Кошелек</div>
+            <div data-click="Util.closeNav" data-link-section="news">Акции</div>
+            <div  data-click="Util.closeNav" data-link-section="stores">Магазины</div>
+            <div  data-click="Util.closeNav" data-link-section="personal">Профиль</div>
+            <div  data-click="Util.closeNav" data-link-section="refer">Пригласить друга</div>
           </div>
           <div class="topnav-bottom">
             <div class="topnav-bottom-feedback" onclick="feedback.style.display=''">
@@ -521,19 +521,19 @@
     </div>
     
     <footer id="bottom-nav" style="display: none;">
-      <div class="bottom-nav-element" section="news">
+      <div class="bottom-nav-element" data-link-section="news">
         <i class="material-icons">local_offer</i>
         <div>Акции</div>
       </div>
-      <div class="bottom-nav-element" section="stores">
+      <div class="bottom-nav-element" data-link-section="stores">
         <i class="material-icons">map</i>
         <div>Карты</div>
       </div>
-      <div class="bottom-nav-element" section="wallet">
+      <div class="bottom-nav-element" data-link-section="wallet">
         <i class="material-icons">credit_card</i>
         <div>Кошелек</div>
       </div>
-      <div class="bottom-nav-element" section="personal">
+      <div class="bottom-nav-element" data-link-section="personal">
         <i class="material-icons">assignment_ind</i>
         <div>Профиль</div>
       </div>

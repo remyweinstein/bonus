@@ -4,43 +4,40 @@ import * as Util from '@/js/libs/functions.js'
 import * as Animate from '@/js/libs/animate.js'
 
 export function initPopups() {
-    let popups = document.getElementsByClassName("popup-text");
-    for (let index = 0; index < popups.length; index++) {
-        const element = popups[index];
-        element.addEventListener("click", function(e) {
-            if (element.classList.contains("show")) element.classList.remove("show");
+    document.querySelectorAll(".popup-text").forEach(function (item) {
+        item.addEventListener("click", function () {
+            if (item.classList.contains("show")) {
+                item.classList.remove("show");
+            }
         });
-    }
+    });
 }
 
 export function showPopup(title, description, message, buttonText, callback) {
-  if (!buttonText) buttonText = "Ок";
-  if (!callback) callback = null;
+    buttonText = !buttonText ? "Ок" : buttonText;
+    callback = !callback ? null : callback;
 
-  Util.hideLoader();
+    Util.hideLoader();
 
-  overlay.style.display = "";
+    overlay.style.display = "";
 
-  popupTitle.style.display = (title ? "" : "none");
-  popupTitle.innerText = title;
+    popupTitle.style.display = (title ? "" : "none");
+    popupTitle.innerText = title;
+    popupDescription.style.display = (description ? "" : "none");
+    popupDescription.innerText = description;
+    popupMessage.style.display = (message ? "" : "none");
+    popupMessage.innerText = message;
+    popupButton.innerText = buttonText;
 
-  popupDescription.style.display = (description ? "" : "none");
-  popupDescription.innerText = description;
+    overlay.callback = callback;
 
-  popupMessage.style.display = (message ? "" : "none");
-  popupMessage.innerText = message;
-
-  popupButton.innerText = buttonText;
-
-  overlay.callback = callback;
-
-  Animate.animate({
-    duration: 333,
-    timing: Animate.quad,
-    draw: function (progress, options) {
-      overlay.style.opacity = progress;
-      // popupMessage.innerText = options.fullText.substring(0, options.fullText.length * progress);
-    },
-    fullText: message
-  });
+    Animate.animate({
+        duration: 333,
+        timing: Animate.quad,
+        draw: function (progress, options) {
+            overlay.style.opacity = progress;
+            // popupMessage.innerText = options.fullText.substring(0, options.fullText.length * progress);
+        },
+        fullText: message
+    });
 }

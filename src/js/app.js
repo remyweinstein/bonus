@@ -34,23 +34,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
     Popups.initPopups();
     
-    let linksRoute = document.querySelectorAll("[data-link-section]");
-    linksRoute.forEach(function(item) {
-        item.addEventListener("click", (e) => {
-            Router.drawSection(e.target.dataset.linkSection);
+    document.querySelectorAll("[data-link-section]").forEach(function(item) {
+        item.addEventListener("click", () => {
+            Router.drawSection(item.dataset.linkSection);
         });
     });
 
-    let links = document.querySelectorAll("[data-click]");
-    links.forEach(function(item) {
-        item.addEventListener("click", (e) => {
-            let contrl = e.target.dataset.click.split('.');
+    document.querySelectorAll("[data-click]").forEach(function(item) {
+        item.addEventListener("click", () => {
+            let contrl = item.dataset.click.split('.');
             Util.findFunction(contrl[1], contrl[0]);
         });
     });
 
     auth_phone.addEventListener("blur", (e) => {
-        dropFail(e.target);
+        e.target.classList.remove("fail");
         auth_phone_popup.classList.remove("show");
     });
     auth_phone.addEventListener("change", (e) => {
@@ -60,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
     auth_phone.addEventListener("input", (e) => Util.modifyInput(e.target));
 
     reg_phone.addEventListener("blur", (e) => {
-        dropFail(e.target);
+        e.target.classList.remove("fail");
         reg_phone_popup.classList.remove("show");
     });
     reg_phone.addEventListener("change", (e) => {
@@ -70,20 +68,20 @@ document.addEventListener("DOMContentLoaded", function () {
     reg_phone.addEventListener("input", (e) => Util.modifyInput(e.target));
 
     auth_pass.addEventListener("blur", (e) => {
-        dropFail(e.target);
+        e.target.classList.remove("fail");
         auth_pass_popup.classList.remove("show");
     });
     reg_pass.addEventListener("blur", (e) => {
-        dropFail(e.target);
+        e.target.classList.remove("fail");
         reg_pass_popup.classList.remove("show");
     });
-    // reg_cardNumber.addEventListener("blur",         (e) => { dropFail(e.target); reg_cardNumber_popup.classList.remove("show"); });
+    // reg_cardNumber.addEventListener("blur",         (e) => { e.target.classList.remove("fail"); reg_cardNumber_popup.classList.remove("show"); });
     reg_confirmation_code.addEventListener("blur", (e) => {
-        dropFail(e.target);
+        e.target.classList.remove("fail");
         reg_confirmation_code_popup.classList.remove("show");
     });
     reg_birthdate.addEventListener("blur", (e) => {
-        dropFail(e.target);
+        e.target.classList.remove("fail");
         reg_birthdate_popup.classList.remove("show");
     });
 
@@ -94,11 +92,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Смена пароля
     personal_new_pass.addEventListener("blur", (e) => {
-        dropFail(e.target);
+        e.target.classList.remove("fail");
         personal_new_pass_popup.classList.remove("show");
     });
     personal_new_pass_confirmation.addEventListener("blur", (e) => {
-        dropFail(e.target);
+        e.target.classList.remove("fail");
         personal_new_pass_confirmation_popup.classList.remove("show");
     });
     personal_changePassword_button.addEventListener("click", () => {
@@ -119,14 +117,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Вход без пароля
     reset_phone.addEventListener("blur", (e) => {
-        dropFail(e.target);
+        e.target.classList.remove("fail");
         reset_phone_popup.classList.remove("show");
     });
-    reset_phone.addEventListener("change", (e) => {
+    reset_phone.addEventListener("change", () => {
         reg_phone.value = reset_phone.value;
         auth_phone.value = reset_phone.value;
     });
-    reset_phone.addEventListener("input", (e) => {
+    reset_phone.addEventListener("input", () => {
         reset_button.disabled = (reset_phone.value ? false : true);
         Util.modifyInput(e.target)
     });
@@ -136,27 +134,27 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#reset_phone').mask('+7-000-000-00-00');
     $('#reset_confirmation_code').mask('0000');
 
-    auth_pass_toggle.addEventListener("click", (e) => {
+    auth_pass_toggle.addEventListener("click", () => {
         auth_pass.type = (auth_pass.type === "password" ? "text" : "password");
         auth_pass_toggle.style.color = (auth_pass.type === "password" ? "black" : "#4eb5e6");
     });
-    reg_pass_toggle.addEventListener("click", (e) => {
+    reg_pass_toggle.addEventListener("click", () => {
         reg_pass.type = (reg_pass.type === "password" ? "text" : "password");
         reg_pass_confirm.type = (reg_pass_confirm.type === "password" ? "text" : "password");
         reg_pass_toggle.style.color = (reg_pass.type === "password" ? "black" : "#4eb5e6");
     });
-    reg_pass_toggle_confirm.addEventListener("click", (e) => {
+    reg_pass_toggle_confirm.addEventListener("click", () => {
         reg_pass_confirm.type = (reg_pass_confirm.type === "password" ? "text" : "password");
         reg_pass.type = (reg_pass.type === "password" ? "text" : "password");
         reg_pass_toggle_confirm.style.color = (reg_pass_confirm.type === "password" ? "black" : "#4eb5e6");
     });
 
-    update_pass_toggle.addEventListener("click", (e) => {
+    update_pass_toggle.addEventListener("click", () => {
         personal_new_pass.type = (personal_new_pass.type === "password" ? "text" : "password");
         personal_new_pass_confirmation.type = (personal_new_pass_confirmation.type === "password" ? "text" : "password");
         update_pass_toggle.style.color = (personal_new_pass.type === "password" ? "black" : "#4eb5e6");
     });
-    update_pass_toggle_confirm.addEventListener("click", (e) => {
+    update_pass_toggle_confirm.addEventListener("click", () => {
         personal_new_pass_confirmation.type = (personal_new_pass_confirmation.type === "password" ? "text" : "password");
         personal_new_pass.type = (personal_new_pass.type === "password" ? "text" : "password");
         update_pass_toggle_confirm.style.color = (personal_new_pass_confirmation.type === "password" ? "black" : "#4eb5e6");
@@ -165,19 +163,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // reg_card_type_analog.addEventListener("change", (e) => {Personal.changeCardType();});
     // Personal.changeCardType();
 
-    reg_button.addEventListener("click", (e) => {
+    reg_button.addEventListener("click", () => {
         if (checkReg()) {
             Popup.showPopup("Подтверждение звонком", "Вам позвонят на номер\n" + reg_phone.value, "На звонок отвечать не требуется, введите последние четыре цифры номера телефона с которого совершён звонок", "Запросить звонок", reg);
         }
     });
 
-    reset_button.addEventListener("click", (e) => {
+    reset_button.addEventListener("click", () => {
         if (canGetResetConfirmationCode()) {
             Popup.showPopup("Подтверждение звонком", "Ожидайте звонок на номер:\n" + reg_phone.value, "На звонок отвечать не требуется, введите последние 4-ре цифры номера телефона входящего звонка.", "Запросить звонок", getResetConfirmationCode);
         }
     });
 
-    document.getElementById("transactions-details-button").addEventListener("click", (e) => {
+    document.getElementById("transactions-details-button").addEventListener("click", () => {
         document.querySelector("#transactions").classList.toggle("transactionsOpen");
         document.querySelector("#transactions-details-button").innerHTML = ((transactions.classList.contains("transactionsOpen")) ? "скрыть детализацию" : "открыть детализацию");
     });
@@ -191,18 +189,8 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#reg_phone').mask('+7-000-000-00-00');
     $('#reg_birthdate').mask('00-00-0000');
 
-    // Навигация
-    let elements = document.getElementsByClassName("bottom-nav-element");
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].addEventListener("click", function (e) {
-            if (e.currentTarget.getAttribute("section"))
-                Router.drawSection(e.currentTarget.getAttribute("section"));
-                Util.remove(document.querySelectorAll(".store_map"));
-        });
-    }
-
     // Сокрытие всплывающего окна
-    overlay.addEventListener("click", function (e) {
+    overlay.addEventListener("click", function () {
         if (overlay.callback) {
             overlay.style.opacity = 0;
             overlay.style.display = "none";
@@ -316,12 +304,6 @@ function attentionFocus(element) {
     element.classList.add("fail");
     element.focus();
     document.getElementById(element.getAttribute("popup_id")).classList.toggle("show");
-}
-
-function dropFail(element) {
-    if (element.value && element.classList.contains("fail")) {
-        element.classList.remove("fail");
-    }
 }
 
 document.querySelectorAll(".system_tabs-head-item").forEach(item => {

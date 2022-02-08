@@ -1,7 +1,5 @@
 # 📦 Bonuses Stolica
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-
 SPA Bonuses AlcoMarket Stolica Webpack 5.
 
 ## Installation
