@@ -1,7 +1,7 @@
 'use strict';
 
-import $ from 'jquery';
-import '@/js/vendor/jquery.mask.js'
+//import $ from 'jquery';
+import '@/js/vendor/jquery.mask.min.js'
 
 import * as Storage from '@/js/libs/storage.js'
 import * as Popups from '@/js/libs/popups';
@@ -326,10 +326,10 @@ function dropFail(element) {
 
 document.querySelectorAll(".system_tabs-head-item").forEach(item => {
     item.addEventListener("click", () => {
-        item.classList.add("tab_h_active");
         item.parentNode.querySelectorAll(".system_tabs-head-item").forEach(function(el) {
             el.classList.remove("tab_h_active");
         });
+        item.classList.add("tab_h_active");
         document.querySelectorAll(".system_tabs-head-item").forEach(function(el) {
             el.classList.remove("tab_c_active");
         });

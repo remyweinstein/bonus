@@ -29,9 +29,7 @@ export function updatePersonalData() {
             }
 
             if (result.data.card_status !== 1) {
-                document.querySelectorAll("#replace_card").forEach(function(item) {
-                    item.parentNode.removeChild(item);
-                });
+                Util.remove(document.querySelectorAll("#replace_card"));
             }
 
             personalCardType.innerText = (result.data.preferred_discount) ? "ДИСКОНТНАЯ" : "БОНУСНАЯ";
