@@ -13,7 +13,7 @@ import * as Stores from '@/js/pages/stores.js'
 import * as Wallet from '@/js/pages/wallet.js'
 
 
-        let prevSection = null;
+let prevSection = null;
 
 let sections = {
     "adult": {
@@ -85,8 +85,9 @@ export function routePrevSection() {
 }
 
 export function drawSection(section) {
-    if (!section)
+    if (!section) {
         section = "adult";
+    }
     prevSection = Storage.getSection();
 
     switch (section) {
@@ -152,6 +153,10 @@ export function drawSection(section) {
             break;
         }
     }
+    
+    document.querySelectorAll(".store_map").forEach(function(el) {
+        el.parentNode.removeChild(el);
+    });
 
     let sectionsElements = document.getElementsByClassName("section");
     for (let i = 0; i < sectionsElements.length; i++) {
