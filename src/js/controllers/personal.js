@@ -1,9 +1,16 @@
 'use strict';
 
+import {html} from '@/js/views/personal.js'
+
 import * as Storage from '@/js/libs/storage.js'
 import * as Popup from '@/js/libs/popups.js'
 import * as Util from '@/js/libs/functions.js'
 import * as Conf from '@/js/config.js'
+
+export function render() {
+    document.querySelector(Conf.APP).innerHTML = html;
+    updatePersonalData();
+}
 
 export function updatePersonalData() {
     getProfileData().then(result => {
@@ -231,4 +238,11 @@ export async function setCard() {
     } else {
         if (result.description) Popup.showPopup("Внимание", result.description);
     }
+}
+
+function attentionFocus(element) {
+    element.scrollIntoView();
+    element.classList.add("fail");
+    element.focus();
+    document.getElementById(element.getAttribute("popup_id")).classList.toggle("show");
 }

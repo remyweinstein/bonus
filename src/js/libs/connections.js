@@ -228,7 +228,7 @@ export async function checkResetConfirmationCode() {
     reset_confirmation_button.disabled = false;
 
     if (result.status) {
-        drawSection("wallet");
+        Router.run("wallet");
     } else {
         Popup.showPopup("Внимание", result.description, null, null, function () {
             reset_confirmation_code.value = "";
@@ -301,9 +301,9 @@ export async function confirmation() {
 
         if (result.status) {
             if (result.data.setNewPassword === undefined) {
-                drawSection("reg_success");
+                Router.run("reg_success");
             } else {
-                drawSection("intro");
+                Router.run("intro");
             }
         } else {
             if (result.description) {
@@ -387,7 +387,7 @@ export async function auth() {
             Storage.setBearerToken(result.data.token);
 
             location.reload();
-            // drawSection("wallet");
+            // Router.run("wallet");
         } else {
             Popup.showPopup("", result.description);
         }

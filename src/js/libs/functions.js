@@ -26,7 +26,7 @@ export function removeChildrens(element) {
 }
 
 export function confirmAdult() {
-  drawSection(Storage.getSection());
+  Router.run(Storage.getSection());
 }
 
 export function showLoader() {
