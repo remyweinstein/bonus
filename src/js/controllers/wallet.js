@@ -1,7 +1,6 @@
 'use strict';
 
-import {html} from '@/js/views/wallet.js'
-
+import template from '@/js/views/wallet.html'
 import * as Storage from '@/js/libs/storage.js'
 import { showPopup } from '@/js/libs/popups.js'
 import * as Animate from '@/js/libs/animate.js'
@@ -12,7 +11,7 @@ import { getGeolink } from '@/js/libs/geo.js'
 clearTimeout(window.walletUpdater);
 
 export function render() {
-    document.querySelector(Conf.APP).innerHTML = html;
+    document.querySelector(Conf.APP).innerHTML = template;
     
     document.getElementById("transactions-details-button").addEventListener("click", () => {
         document.querySelector("#transactions").classList.toggle("transactionsOpen");

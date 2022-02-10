@@ -1,13 +1,13 @@
 'use strict';
 
-import { html } from '@/js/views/news.js'
+import template from '@/js/views/news.html'
 
 import { getBearerToken } from '@/js/libs/storage.js'
 import { showPopup } from '@/js/libs/popups.js'
 import { APP, API_URL } from '@/js/config.js'
 
 export function render() {
-    document.querySelector(APP).innerHTML = html;
+    document.querySelector(APP).innerHTML = template;
     updateNews();
 }
 

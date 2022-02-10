@@ -1,0 +1,37 @@
+/* ==|========================
+   Pages/Wallet
+   =========================== */
+
+.payment {
+  text-align: left;
+  margin-bottom: 32px;
+  width: 100%;
+  border-bottom: 1px solid #D5D5D5;
+  padding-bottom: 3rem;
+}
+.payment-row {
+  width: 20%;
+  margin: 0 auto;
+}
+.payment details {
+  width: 20%;
+  margin: 0 auto;
+}
+details .payment-row {
+  width: 100%;
+}
+.payment-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.payment-details {
+  display: grid;
+  grid-gap: 2vw;
+  text-align: center;
+}
+.payment-charge {
+  grid-template-columns: 1fr 1fr;
+}
+.payment-not-charge {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}

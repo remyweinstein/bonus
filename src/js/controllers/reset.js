@@ -2,11 +2,11 @@
 
 import { modifyInput } from '@/js/libs/functions.js'
 import { showPopup } from '@/js/libs/popups.js'
-import {html} from '@/js/views/reset.js'
+import template from '@/js/views/reset.html'
 import { APP } from '@/js/config.js'
 
 export function render() {
-    document.querySelector(APP).innerHTML = html;
+    document.querySelector(APP).innerHTML = template;
     
     // Вход без пароля
     reset_phone.addEventListener("blur", (e) => {

@@ -1,11 +1,11 @@
 'use strict';
 
 import * as Conn from '@/js/libs/connections.js'
-import {html} from '@/js/views/refer.js'
+import template from '@/js/views/refer.html'
 import { APP } from '@/js/config.js'
 
 export function render() {
-    document.querySelector(APP).innerHTML = html;
+    document.querySelector(APP).innerHTML = template;
 }
 
 function renderReferSection() {

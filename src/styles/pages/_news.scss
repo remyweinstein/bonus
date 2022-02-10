@@ -1,0 +1,31 @@
+/* ==|========================
+   Pages/News
+   =========================== */
+
+.news {
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.news-img {
+  width: 40%;
+  display: flex;
+}
+
+.news-info {
+  width: 60%;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.news-img img {
+  width: 100%;
+}
+.news-date {
+  color: #757575;
+}
+.news-title {
+  font-weight: bold;
+}

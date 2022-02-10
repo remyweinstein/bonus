@@ -2,11 +2,11 @@
 
 import { showPopup } from '@/js/libs/popups.js'
 import { modifyInput } from '@/js/libs/functions.js'
-import {html} from '@/js/views/registration.js'
+import template from '@/js/views/registration.html'
 import { APP } from '@/js/config.js'
 
 export function render() {
-    document.querySelector(APP).innerHTML = html;
+    document.querySelector(APP).innerHTML = template;
     
     reg_phone.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");

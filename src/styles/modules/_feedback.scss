@@ -3,61 +3,46 @@
    =========================== */
 
 #feedback {
-    display: grid;
-    position: fixed;
-    top: 0;
-    z-index: 3;
-    background: white;
-    height: 100vh;
-    width: 100vw;
-    
-    &>.closebtn {
-        width: 48px;
-        height: 48px;
-        text-align: center;
-        font-size: 29px;
-        position: fixed;
-        right: 134px;
-        top: 61px;
-    }
-
+  display: grid;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  background: white;
+  height: 100vh;
+  width: 100vw;
 }
-
+#feedback > .closebtn {
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  font-size: 29px;
+  position: fixed;
+  right: 134px;
+  top: 61px;
+}
+#open-feedback-cont {
+  position: fixed;
+  bottom: 5%;
+  width: 100%;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2vw;
+}
 #open-feedback {
-    position: relative;
-    text-align: center;
-    font-size: 4rem;
-    color: #33C3F0;
-    right: 0px;
-    grid-column-start: 4;
-    animation-name: open-feedback-animation;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    
-    #open-feedback-cont {
-        position: fixed;
-        bottom: 5%;
-        width: 100%;
-        z-index: 1;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-gap: 2vw;
-    }
-}
+  position: relative;
+  text-align: center;
+  font-size: 4rem;
+  color: #33C3F0;
+  right: 0px;
+  grid-column-start: 4;
 
+  animation-name: open-feedback-animation;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
 @keyframes open-feedback-animation {
-    0% {color: #33C3F0; bottom: 48px;}
-    50% {color: black; bottom: 72px;}
-    100% {color: #33C3F0; bottom: 48px;}
+  0% {color: #33C3F0; bottom: 48px;}
+  50% {color: black; bottom: 72px;}
+  100% {color: #33C3F0; bottom: 48px;}
 }
-
-@media(max-width: 440px){
-    #feedback {
-        
-        &>.closebtn {
-            right: 6px;
-            top: 41px;
-        }
-    }
-}
-

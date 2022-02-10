@@ -1,6 +1,6 @@
 'use strict';
 
-import {html} from '@/js/views/personal.js'
+import template from '@/js/views/personal.html'
 
 import * as Storage from '@/js/libs/storage.js'
 import * as Popup from '@/js/libs/popups.js'
@@ -8,7 +8,7 @@ import * as Util from '@/js/libs/functions.js'
 import * as Conf from '@/js/config.js'
 
 export function render() {
-    document.querySelector(Conf.APP).innerHTML = html;
+    document.querySelector(Conf.APP).innerHTML = template;
     updatePersonalData();
 }
 

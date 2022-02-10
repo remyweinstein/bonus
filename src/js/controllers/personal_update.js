@@ -1,11 +1,11 @@
 'use strict';
 
 import * as Personal from '@/js/controllers/personal.js'
-import {html} from '@/js/views/personal_update.js'
+import template from '@/js/views/personal_update.html'
 import { APP } from '@/js/config.js'
 
 export function render() {
-    document.querySelector(APP).innerHTML = html;
+    document.querySelector(APP).innerHTML = template;
     
     // Переход на пластиковую карту
     personal_changeCard_button.addEventListener("click", () => {

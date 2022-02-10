@@ -9,27 +9,30 @@
 @import 'vendor/datepicker';
 
 /* Base */
-//@import 'base';
+@import 'base';
 
 /* Layouts */
-//@import 'layouts/header';
-//@import 'layouts/top_menu';
-//@import 'layouts/section';
-//@import 'layouts/footer';
-//@import 'layouts/bottom_menu';
+@import 'layouts/header';
+@import 'layouts/top_menu';
+@import 'layouts/section';
+@import 'layouts/footer';
+@import 'layouts/bottom_menu';
 
 /* Modules */
-//@import 'modules/popup';
-//@import 'modules/popups';
-//@import 'modules/loader';
-//@import 'modules/overlay';
-//@import 'modules/feedback';
-//@import 'modules/terms';
+@import 'modules/popup';
+@import 'modules/popups';
+@import 'modules/loader';
+@import 'modules/overlay';
+@import 'modules/feedback';
+@import 'modules/terms';
 
 /* Elements */
-//@import 'elements/actions';
+@import 'elements/details';
+@import 'elements/actions';
 
 /* Pages */
-//@import 'pages/adult';
+@import 'pages/adult';
+@import 'pages/personal';
+@import 'pages/news';
 
 @import 'style';

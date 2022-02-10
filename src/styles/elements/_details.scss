@@ -1,0 +1,21 @@
+/* ==|========================
+   Elements/Details
+   =========================== */
+
+details[open] span {
+  animation: spoiler 1s;
+}
+@keyframes spoiler {
+  0%   {opacity: 0;}
+  100% {opacity: 1;}
+}
+details > summary {
+  list-style: none;
+}
+details > summary.special {
+  color: #1EAEDB;
+}
+details[open] > summary.special {
+  display: none;
+}
+

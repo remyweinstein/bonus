@@ -1,8 +1,8 @@
 'use strict';
 
-import {html} from '@/js/views/reg_success.js'
+import template from '@/js/views/reg_success.html'
 import { APP } from '@/js/config.js'
 
 export function render() {
-    document.querySelector(APP).innerHTML = html;
+    document.querySelector(APP).innerHTML = template;
 }

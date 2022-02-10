@@ -1,11 +1,11 @@
 'use strict';
 
 import * as Util from '@/js/libs/functions.js'
-import {html} from '@/js/views/authorization.js'
+import template from '@/js/views/authorization.html'
 import { APP } from '@/js/config.js'
 
 export function render() {
-    document.querySelector(APP).innerHTML = html;
+    document.querySelector(APP).innerHTML = template;
     
     auth_phone.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");

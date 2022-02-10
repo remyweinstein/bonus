@@ -1,11 +1,11 @@
 'use strict';
 
-import {html} from '@/js/views/stores.js'
+import template from '@/js/views/stores.html'
 import * as Popup from '@/js/libs/popups.js'
 import * as Conf from '@/js/config.js'
 
 export function render() {
-    document.querySelector(Conf.APP).innerHTML = html;
+    document.querySelector(Conf.APP).innerHTML = template;
     // Выбор города
     store_cities.addEventListener("change", (e) => {
         getStoresList(store_cities.value);
