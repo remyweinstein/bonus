@@ -1,7 +1,7 @@
 'use strict';
 
 import { API_URL } from '@/js/config.js'
-import { getBearerToken, clearAll, setSection } from '@/js/libs/storage.js'
+import { getBearerToken, setBearerToken, clearAll, setSection } from '@/js/libs/storage.js'
 import { showPopup } from '@/js/libs/popups.js'
 import { showLoader, hideLoader } from '@/js/libs/functions.js'
 import { animate, quad } from '@/js/libs/animate.js'
