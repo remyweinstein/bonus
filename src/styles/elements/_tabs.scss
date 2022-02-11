@@ -84,6 +84,20 @@
 
 .system_tabs-content-item-change {
     padding: 14px 0px;
+    display: none;
+    
+    span {
+        font-size: 13px;
+    }
+    
+    &.tab_h_active {
+        background: #f6f6f6 !important;
+    }
+    
+    &.tab_c_active {
+        background: #f6f6f6 !important;
+    }
+    
 }
 
 .system_tabs-content {
@@ -91,14 +105,6 @@
 }
 
 .system_tabs-content-item {
-    display: none;
-    
-    span {
-        font-size: 13px;
-    }
-}
-
-.system_tabs-content-item-change {
     display: none;
     
     span {

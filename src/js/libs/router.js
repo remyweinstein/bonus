@@ -55,7 +55,7 @@ export function animatePage(template) {
     }, 0.1);
 }
 
-function routePrevSection() {
+export function routePrevSection() {
     let section = getSection();
     if (sections[section] && sections[section].prevSection) {
         run(sections[section].prevSection);

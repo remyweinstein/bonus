@@ -13,6 +13,12 @@ export const routes = {
         hash: "#adult",
         title: ""
     },
+    "rules": {
+        hash: "#rules",
+        title: "Правила проведения акции",
+        showMenu: true,
+        prevSection: "refer"
+    },
     "intro": {
         hash: "#intro",
         title: ""
