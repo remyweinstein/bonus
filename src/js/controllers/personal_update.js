@@ -1,14 +1,8 @@
 'use strict';
 
-import { animatePage } from '@/js/libs/router.js'
 import { changeCard, changeProfileData, changeCardType } from '@/js/controllers/personal.js'
-import template from '@/js/views/personal_update.html'
-import { APP } from '@/js/config.js'
 
 export function render() {
-    animatePage(template);
-//    APP.innerHTML = template;
-    
     // Переход на пластиковую карту
     personal_changeCard_button.addEventListener("click", () => {
         changeCard();

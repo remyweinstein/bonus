@@ -1,20 +1,15 @@
 'use strict';
 
-import { animatePage } from '@/js/libs/router.js'
-import template from '@/js/views/wallet.html'
 import { getLsLink, setLsLink, getSection, getBearerToken } from '@/js/libs/storage.js'
 import { showPopup } from '@/js/libs/popups.js'
 import { animate, quad } from '@/js/libs/animate.js'
-import { APP, cardImageSRC, cardImageW, API_URL, cardImageH } from '@/js/config.js'
+import { cardImageSRC, cardImageW, API_URL, cardImageH } from '@/js/config.js'
 import { removeChildrens } from '@/js/libs/functions.js'
 import { getGeolink } from '@/js/libs/geo.js'
 
 clearTimeout(window.walletUpdater);
 
 export function render() {
-    animatePage(template);
-//    APP.innerHTML = template;
-    
     document.getElementById("transactions-details-button").addEventListener("click", () => {
         document.querySelector("#transactions").classList.toggle("transactionsOpen");
         document.querySelector("#transactions-details-button").innerHTML = ((transactions.classList.contains("transactionsOpen")) ? "скрыть детализацию" : "открыть детализацию");

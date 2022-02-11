@@ -1,14 +1,9 @@
 'use strict';
 
-import { animatePage } from '@/js/libs/router.js'
 import { showPopup } from '@/js/libs/popups.js'
 import { modifyInput } from '@/js/libs/functions.js'
-import template from '@/js/views/registration.html'
-import { APP } from '@/js/config.js'
 
 export function render() {
-    animatePage(template);
-//    APP.innerHTML = template;
     
     reg_phone.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");

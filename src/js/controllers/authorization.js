@@ -1,14 +1,8 @@
 'use strict';
 
-import { animatePage } from '@/js/libs/router.js'
-import * as Util from '@/js/libs/functions.js'
-import template from '@/js/views/authorization.html'
-import { APP } from '@/js/config.js'
+import { modifyInput } from '@/js/libs/functions.js'
 
 export function render() {
-    animatePage(template);
-    APP.innerHTML = template;
-    
     auth_phone.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");
         auth_phone_popup.classList.remove("show");
@@ -18,7 +12,7 @@ export function render() {
         reset_phone.value = auth_phone.value;
     });
     auth_phone.addEventListener("input", (e) => {
-        Util.modifyInput(e.target);
+        modifyInput(e.target);
     });
     auth_pass.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");

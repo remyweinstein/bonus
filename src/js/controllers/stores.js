@@ -1,14 +1,10 @@
 'use strict';
 
-import { animatePage } from '@/js/libs/router.js'
-import template from '@/js/views/stores.html'
 import { showPopup } from '@/js/libs/popups.js'
-import { APP, API_URL } from '@/js/config.js'
+import { API_URL } from '@/js/config.js'
 import { getStoreToGeoMap } from '@/js/libs/geo.js'
 
 export function render() {
-    animatePage(template);
-//    APP.innerHTML = template;
     // Выбор города
     store_cities.addEventListener("change", (e) => {
         getStoresList(store_cities.value);

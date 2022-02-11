@@ -1,15 +1,10 @@
 'use strict';
 
-import template from '@/js/views/news.html'
-
-import { animatePage } from '@/js/libs/router.js'
 import { getBearerToken } from '@/js/libs/storage.js'
 import { showPopup } from '@/js/libs/popups.js'
-import { APP, API_URL } from '@/js/config.js'
+import { API_URL } from '@/js/config.js'
 
 export function render() {
-    animatePage(template);
-    //APP.innerHTML = template;
     updateNews();
 }
 

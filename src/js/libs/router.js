@@ -65,9 +65,13 @@ export function routePrevSection() {
 function loadController(controller) {
     APP.removeEventListener('click', Event.click);
     
-    require(['@/js/controllers/'+controller], function(controller) {
-      controller.render();
-      init();
-      APP.addEventListener('click', Event.click);
+    require(['@/js/views/'+controller+'.html'], function(template) {
+        animatePage(template.default);
+        
+        require(['@/js/controllers/'+controller], function(controller) {
+          controller.render();
+          init();
+          APP.addEventListener('click', Event.click);
+        });
     });
 }

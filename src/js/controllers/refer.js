@@ -1,13 +1,10 @@
 'use strict';
 
-import { animatePage } from '@/js/libs/router.js'
 import { getReferLink } from '@/js/libs/connections.js'
-import template from '@/js/views/refer.html'
-import { APP } from '@/js/config.js'
+import { animate, quad } from '@/js/libs/animate.js'
 
 export function render() {
-    animatePage(template);
-//    APP.innerHTML = template;
+    renderReferSection();
 }
 
 function renderReferSection() {
@@ -24,9 +21,9 @@ function renderReferSection() {
                 referQr.appendChild(qrCanvas);
 
                 referLink.style.display = "";
-                Animate.animate({
+                animate({
                     duration: 1000,
-                    timing: Animate.quad,
+                    timing: quad,
                     draw: function (progress, options) {
                         qrCanvas.style.opacity = progress;
                         referLink.style.opacity = progress;
