@@ -1,11 +1,14 @@
 'use strict';
 
+import { animatePage } from '@/js/libs/router.js'
 import template from '@/js/views/stores.html'
-import * as Popup from '@/js/libs/popups.js'
-import * as Conf from '@/js/config.js'
+import { showPopup } from '@/js/libs/popups.js'
+import { APP, API_URL } from '@/js/config.js'
+import { getStoreToGeoMap } from '@/js/libs/geo.js'
 
 export function render() {
-    document.querySelector(Conf.APP).innerHTML = template;
+    animatePage(template);
+//    APP.innerHTML = template;
     // Выбор города
     store_cities.addEventListener("change", (e) => {
         getStoresList(store_cities.value);
@@ -31,13 +34,13 @@ export function updateStoresData() {
 
         }).catch(error => {
             console.warn(error);
-            Popup.showPopup("Внимание", "Произошла ошибка, попробуйте позже.");
+            showPopup("Внимание", "Произошла ошибка, попробуйте позже.");
         });
     }
 }
 
 export function getStores() {
-    return fetch(Conf.API_URL, {
+    return fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8"
@@ -60,7 +63,7 @@ export async function getStoresList(city_id) {
         "city_id": city_id
     };
 
-    let response = await fetch(Conf.API_URL, {
+    let response = await fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8"
@@ -76,5 +79,25 @@ export async function getStoresList(city_id) {
         let div = document.createElement("div");
         div.innerHTML = "<div class='store_block' data-rsa='" + city.rsa_id + "' data-coordinates='" + city.coordinates + "' data-phone='" + city.phone + "' data-city='" + city.city_name + "'><div class='store_block-title'>" + city.store_name + "</div><div class='store_block-shedule'>" + city.shedule + "</div><span class='show_store'>></span></div>";
         document.querySelector("#storesList").append(div.children[0]);
+    });
+    
+    document.addEventListener("click", (e) => {
+
+        if (e.target.classList.contains("store_map-bg")) {
+            document.querySelectorAll(".store_map").forEach(function(el) {
+                el.parentNode.removeChild(el);
+            });
+        }
+        if (e.target.parentNode.classList.contains("store_block")) {
+            let el = e.target.parentNode;
+            let coordinates = el.dataset.coordinates;
+            let title = el.querySelector(".store_block-title").innerHTML;
+            let shedule = el.querySelector(".store_block-shedule").innerHTML;
+            let phone = el.dataset.phone;
+            let city = el.dataset.city;
+            let rsa_id = el.dataset.rsa;
+
+            getStoreToGeoMap(coordinates, city, title, shedule, phone, rsa_id);
+        }
     });
 }

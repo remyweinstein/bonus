@@ -1,11 +1,11 @@
 'use strict';
 
-import * as Animate from '@/js/libs/animate.js'
+import { animate, quad } from '@/js/libs/animate.js'
 import * as Router from '@/js/libs/router.js'
 import * as Conn from '@/js/libs/connections.js'
 import * as Util from '@/js/libs/functions.js'
-import * as Conf from '@/js/config.js'
-import * as Storage from '@/js/libs/storage.js'
+import { TERMS_URL, RULES_URL } from '@/js/config.js'
+import { getSection } from '@/js/libs/storage.js'
 
 export function modifyInput(el) {
   if (el.value.length === 1 && +el.value[0] === 8) el.value = "+7-";
@@ -26,7 +26,7 @@ export function removeChildrens(element) {
 }
 
 export function confirmAdult() {
-  Router.run(Storage.getSection());
+  Router.run(getSection());
 }
 
 export function showLoader() {
@@ -40,9 +40,9 @@ export function hideLoader(instant) {
   if (instant) {
     loader.style.display = "none";
   } else {
-    Animate.animate({
+    animate({
       duration: 1000,
-      timing: Animate.quad,
+      timing: quad,
       draw: function (progress, options) {
         loader.style.opacity = 1 - progress;
       },
@@ -86,12 +86,12 @@ function getContext(string) {
 
 export function showTerms() {
     document.getElementById("terms").style.display = "";
-    document.getElementById("terms").getElementsByTagName("iframe")[0].src = Conf.TERMS_URL;
+    document.getElementById("terms").getElementsByTagName("iframe")[0].src = TERMS_URL;
 }
 
 export function showRules() {
     document.getElementById("terms").style.display = "";
-    document.getElementById("terms").getElementsByTagName("iframe")[0].src = Conf.RULES_URL;
+    document.getElementById("terms").getElementsByTagName("iframe")[0].src = RULES_URL;
 }
 
 export function remove(els) {

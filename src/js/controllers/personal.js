@@ -1,14 +1,15 @@
 'use strict';
 
 import template from '@/js/views/personal.html'
-
-import * as Storage from '@/js/libs/storage.js'
-import * as Popup from '@/js/libs/popups.js'
-import * as Util from '@/js/libs/functions.js'
-import * as Conf from '@/js/config.js'
+import { animatePage } from '@/js/libs/router.js'
+import { getBearerToken } from '@/js/libs/storage.js'
+import { showPopup } from '@/js/libs/popups.js'
+import { hideLoader, remove } from '@/js/libs/functions.js'
+import { APP, API_URL } from '@/js/config.js'
 
 export function render() {
-    document.querySelector(Conf.APP).innerHTML = template;
+    animatePage(template);
+//    APP.innerHTML = template;
     updatePersonalData();
 }
 
@@ -36,7 +37,7 @@ export function updatePersonalData() {
             }
 
             if (result.data.card_status !== 1) {
-                Util.remove(document.querySelectorAll("#replace_card"));
+                remove(document.querySelectorAll("#replace_card"));
             }
 
             personalCardType.innerText = (result.data.preferred_discount) ? "ДИСКОНТНАЯ" : "БОНУСНАЯ";
@@ -48,17 +49,17 @@ export function updatePersonalData() {
                 notMatchCardType.style.display = "none";
             }
         } else {
-            Popup.showPopup("Внимание", "Возникла ошибка при запросе данных с сервера. Повторите попытку позднее.");
+            showPopup("Внимание", "Возникла ошибка при запросе данных с сервера. Повторите попытку позднее.");
         }
     });
 }
 
 function getProfileData() {
-    return fetch(Conf.API_URL, {
+    return fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
-            "Authorization": "Bearer " + Storage.getBearerToken()
+            "Authorization": "Bearer " + getBearerToken()
         },
         body: JSON.stringify({
             "method": "getProfileData"
@@ -89,11 +90,11 @@ async function changePassword() {
 
     personal_changePassword_button.disabled = true;
 
-    let response = await fetch(Conf.API_URL, {
+    let response = await fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
-            "Authorization": "Bearer " + Storage.getBearerToken()
+            "Authorization": "Bearer " + getBearerToken()
         },
         body: JSON.stringify({
             "method": "changePassword",
@@ -119,11 +120,11 @@ export async function changeCard() {
 
     personal_changeCard_button.disabled = true;
 
-    let response = await fetch(Conf.API_URL, {
+    let response = await fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
-            "Authorization": "Bearer " + Storage.getBearerToken()
+            "Authorization": "Bearer " + getBearerToken()
         },
         body: JSON.stringify({
             "method": "changeCard",
@@ -138,20 +139,20 @@ export async function changeCard() {
     personal_changeCard_button.disabled = false;
 
     if (result.status) {
-        if (result.description) Popup.showPopup("", result.description);
+        if (result.description) showPopup("", result.description);
         personal_new_pass.value = "";
         personal_new_pass_confirmation.value = "";
     } else {
-        if (result.description) Popup.showPopup("Внимание", result.description);
+        if (result.description) showPopup("Внимание", result.description);
     }
 }
 
 export function changeCardType() {
-    return fetch(Conf.API_URL, {
+    return fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
-            "Authorization": "Bearer " + Storage.getBearerToken()
+            "Authorization": "Bearer " + getBearerToken()
         },
         body: JSON.stringify({
             "method": "changeCardType",
@@ -176,7 +177,7 @@ export function changeProfileData() {
                 if (result.status) {
                     changePass = true;
                 } else {
-                    Popup.showPopup("Внимание", result.description);
+                    showPopup("Внимание", result.description);
                 }
             }
         });
@@ -184,7 +185,7 @@ export function changeProfileData() {
             if (changePass) {
                 changeCardType().then(result => {
                     if (result.status) {
-                        Popup.showPopup("", "Данные профиля изменены!");
+                        showPopup("", "Данные профиля изменены!");
                     }
                 });
             }
@@ -193,7 +194,7 @@ export function changeProfileData() {
     else {
         changeCardType().then(result => {
             if (result.status) {
-                Popup.showPopup("", "Тип карты изменен!");
+                showPopup("", "Тип карты изменен!");
             }
         });
     }
@@ -202,7 +203,7 @@ export function changeProfileData() {
 
 export async function setCard() {
     if (plasticNumber.value.length < 10) {
-        Popup.showPopup("Внимание", "Не указан номер карты!");
+        showPopup("Внимание", "Не указан номер карты!");
         return;
     }
 
@@ -216,11 +217,11 @@ export async function setCard() {
         }
     };
 
-    let response = await fetch(Conf.API_URL, {
+    let response = await fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
-            "Authorization": "Bearer " + Storage.getBearerToken()
+            "Authorization": "Bearer " + getBearerToken()
         },
         body: JSON.stringify(body)
     });
@@ -229,14 +230,14 @@ export async function setCard() {
 
     personal_changePassword_button.disabled = false;
 
-    Util.hideLoader();
+    hideLoader();
     set_card.disabled = false;
     plasticNumber.value = "";
 
     if (result.status) {
-        if (result.description) Popup.showPopup("", result.description);
+        if (result.description) showPopup("", result.description);
     } else {
-        if (result.description) Popup.showPopup("Внимание", result.description);
+        if (result.description) showPopup("Внимание", result.description);
     }
 }
 

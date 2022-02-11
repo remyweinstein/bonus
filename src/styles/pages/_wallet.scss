@@ -3,35 +3,146 @@
    =========================== */
 
 .payment {
-  text-align: left;
-  margin-bottom: 32px;
-  width: 100%;
-  border-bottom: 1px solid #D5D5D5;
-  padding-bottom: 3rem;
+    text-align: left;
+    margin-bottom: 32px;
+    width: 100%;
+    border-bottom: 1px solid #D5D5D5;
+    padding-bottom: 3rem;
+    
+    details {
+        width: 20%;
+        margin: 0 auto;
+    }
 }
 .payment-row {
-  width: 20%;
-  margin: 0 auto;
+    width: 20%;
+    margin: 0 auto;
 }
-.payment details {
-  width: 20%;
-  margin: 0 auto;
-}
+
 details .payment-row {
-  width: 100%;
+    width: 100%;
 }
+
 .payment-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
+
 .payment-details {
-  display: grid;
-  grid-gap: 2vw;
-  text-align: center;
+    display: grid;
+    grid-gap: 2vw;
+    text-align: center;
 }
+
 .payment-charge {
-  grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
+
 .payment-not-charge {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.wallet__top {
+    background: #fff;
+}
+
+.balance-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.balance-text-hr {
+    width: 30px;
+    height: 1px;
+    background: #000;
+    margin: 0px 10px;
+}
+
+#qrcode {
+    padding: 30px 0px;
+}
+
+.wallet__bottom {
+    padding-top: 1rem;
+}
+
+#cardType {
+    font-size: 22px;
+    padding-top: 2rem;
+}
+
+#cardDataDiscount {
+    flex-direction: column;
+    
+    a {
+        padding: 2rem 0;
+        color: #28a960;
+        font-size: 18px;
+        font-weight: 600;
+    }
+}
+
+#cardDataBonus {
+    max-width: 90%;
+    justify-content: center;
+    margin: 0 auto;
+    
+    span {
+        padding-bottom: 2rem;
+    }
+}
+
+#cardDataBonusPreffered {
+    max-width: 90%;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+#cardDataBonusPreffered span {
+    padding-bottom: 2rem;
+}
+
+.transactionsOpen {
+    margin: 20px 0px !important;
+    width: 100%;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+}
+
+.payment-amount {
+    color: #666;
+    font-weight: 600;
+}
+
+.payment-position {
+    font-size: 13px;
+    color: #666;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+.payment-position-amount span {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.payment-row.payment-details.payment-header.payment-position-amount {
+    padding-top: 5px;
+    border-top: 1px solid #D5D5D5;
+}
+
+@media(max-width: 440px){
+    .payment-row {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .payment details {
+        width: 90%;
+        margin: 0 auto;
+    }
+
 }

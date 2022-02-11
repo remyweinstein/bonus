@@ -10,15 +10,6 @@ export function getGeolink(title, description) {
     return GeolinkElement;
 }
 
-export function getGeoMap() {
-    return new ymaps.Map('map', {
-        center: [48.4827, 135.084],
-        zoom: 10
-    }, {
-        searchControlProvider: 'yandex#search'
-    });
-}
-
 export function getStoreToGeoMap(coordinates, city, title, shedule, phone, rsa_id) {
     document.querySelectorAll(".store_map").forEach(function(el) {
         el.parentNode.removeChild(el);
@@ -61,22 +52,11 @@ export function getStoreToGeoMap(coordinates, city, title, shedule, phone, rsa_i
     myMap.geoObjects.add(objectManager);
 }
 
-document.addEventListener("click", (e) => {
-    
-    if (e.target.classList.contains("store_map-bg")) {
-        document.querySelectorAll(".store_map").forEach(function(el) {
-            el.parentNode.removeChild(el);
-        });
-    }
-    if (e.target.parentNode.classList.contains("store_block")) {
-        let el = e.target.parentNode;
-        let coordinates = el.dataset.coordinates;
-        let title = el.querySelector(".store_block-title").innerHTML;
-        let shedule = el.querySelector(".store_block-shedule").innerHTML;
-        let phone = el.dataset.phone;
-        let city = el.dataset.city;
-        let rsa_id = el.dataset.rsa;
-
-        getStoreToGeoMap(coordinates, city, title, shedule, phone, rsa_id);
-    }
-});
+function getGeoMap() {
+    return new ymaps.Map('map', {
+        center: [48.4827, 135.084],
+        zoom: 10
+    }, {
+        searchControlProvider: 'yandex#search'
+    });
+}

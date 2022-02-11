@@ -1,17 +1,19 @@
 'use strict';
 
+import { animatePage } from '@/js/libs/router.js'
 import template from '@/js/views/wallet.html'
-import * as Storage from '@/js/libs/storage.js'
+import { getLsLink, setLsLink, getSection, getBearerToken } from '@/js/libs/storage.js'
 import { showPopup } from '@/js/libs/popups.js'
-import * as Animate from '@/js/libs/animate.js'
-import * as Conf from '@/js/config.js'
+import { animate, quad } from '@/js/libs/animate.js'
+import { APP, cardImageSRC, cardImageW, API_URL, cardImageH } from '@/js/config.js'
 import { removeChildrens } from '@/js/libs/functions.js'
 import { getGeolink } from '@/js/libs/geo.js'
 
 clearTimeout(window.walletUpdater);
 
 export function render() {
-    document.querySelector(Conf.APP).innerHTML = template;
+    animatePage(template);
+//    APP.innerHTML = template;
     
     document.getElementById("transactions-details-button").addEventListener("click", () => {
         document.querySelector("#transactions").classList.toggle("transactionsOpen");
@@ -27,7 +29,7 @@ export function updateWalletData(onlyBalance) {
     }
     
     let lastId = 0;
-    let walletData = JSON.parse(Storage.getLsLink());
+    let walletData = JSON.parse(getLsLink());
         
     //
     if (walletData) {
@@ -89,17 +91,17 @@ export function updateWalletData(onlyBalance) {
             }
 
             if (result.data.cardNumber) {
-                Storage.setLsLink(JSON.stringify(walletData));
+                setLsLink(JSON.stringify(walletData));
             }
 
-            if (onlyBalance || Storage.getSection() === "wallet") {
+            if (onlyBalance || getSection() === "wallet") {
                 window.walletUpdater = setTimeout(updateWalletData, 15000);
             }
         }
     }).catch(error => {
         console.warn(error);
         //showPopup("Внимание", "Произошла ошибка при загрузке транзакций, попробуйте позже.");
-        if (onlyBalance || Storage.getSection() === "wallet") {
+        if (onlyBalance || getSection() === "wallet") {
             window.walletUpdater = setTimeout(updateWalletData, 15000);
         }
     });
@@ -130,9 +132,9 @@ function drawWalletData(walletData) {
     
     if (walletData.cardNumber && cardNumber.innerText != walletData.cardNumber) {
         cardNumber.innerText = walletData.cardNumber;
-        Animate.animate({
+        animate({
             duration: 1000,
-            timing: Animate.quad,
+            timing: quad,
             draw: function (progress) {
                 cardNumber.style.opacity = progress;
             },
@@ -197,9 +199,9 @@ function drawWalletData(walletData) {
     if (balance != undefined) {
         if (bonuses.innerText != balance) {
             bonuses.classList.remove("load");
-            Animate.animate({
+            animate({
                 duration: 1000,
-                timing: Animate.quad,
+                timing: quad,
                 draw: function (progress, options) {
                     if (document.querySelector("#bonuses")) {
                         bonuses.innerText = new Intl.NumberFormat('ru-RU').format(Number(Math.ceil(balance * progress)));
@@ -393,7 +395,7 @@ function drawPurchase(purchase) {
 function drawBonusCard(cardNumber) {
     let cardImage = new Image();
     cardImage.loaded = false;
-    cardImage.src = Conf.cardImageSRC;
+    cardImage.src = cardImageSRC;
     cardImage.addEventListener("load", (e) => {
 
         let qrCanvas = document.createElement("canvas");
@@ -407,9 +409,9 @@ function drawBonusCard(cardNumber) {
         qrcode.cardNumber = cardNumber;
         qrcode.appendChild(qrCanvas);
         qrcode.style.display = "";
-        Animate.animate({
+        animate({
             duration: 1000,
-            timing: Animate.quad,
+            timing: quad,
             draw: function (progress) {
                 if (document.querySelector("#qrcode")) {
                     qrcode.style.opacity = progress;
@@ -419,12 +421,12 @@ function drawBonusCard(cardNumber) {
         });
 
         let cardCanvas = document.createElement("canvas");
-        cardCanvas.width = Conf.cardImageW;
-        cardCanvas.height = Conf.cardImageH;
+        cardCanvas.width = cardImageW;
+        cardCanvas.height = cardImageH;
 
         let cardCanvasCtx = cardCanvas.getContext("2d");
         cardCanvasCtx.imageSmoothingEnabled = false;
-        cardCanvasCtx.drawImage(cardImage, 0, 0, Conf.cardImageW, Conf.cardImageH);
+        cardCanvasCtx.drawImage(cardImage, 0, 0, cardImageW, cardImageH);
         cardCanvasCtx.drawImage(qrCanvas, 192, 48, 128, 128);
 
         cardCanvasCtx.font = '32px sans-serif';
@@ -432,9 +434,9 @@ function drawBonusCard(cardNumber) {
         cardCanvasCtx.fillText(cardNumber.substr(0, 7), 256, 216);
 
         downloadCard.style.display = "";
-        Animate.animate({
+        animate({
             duration: 1000,
-            timing: Animate.quad,
+            timing: quad,
             draw: function (progress, options) {
                 if (document.querySelector("#downloadCard")) {
                     downloadCard.style.opacity = progress;
@@ -458,11 +460,11 @@ async function getWalletData(lastId, onlyBalance) {
         onlyBalance = false;
     }
 
-    return fetch(Conf.API_URL, {
+    return fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
-            "Authorization": "Bearer " + Storage.getBearerToken()
+            "Authorization": "Bearer " + getBearerToken()
         },
         body: JSON.stringify({
             "method": "getWalletData",

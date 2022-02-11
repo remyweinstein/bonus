@@ -12,27 +12,29 @@
 @import 'base';
 
 /* Layouts */
-@import 'layouts/header';
-@import 'layouts/top_menu';
-@import 'layouts/section';
-@import 'layouts/footer';
-@import 'layouts/bottom_menu';
 
 /* Modules */
 @import 'modules/popup';
-@import 'modules/popups';
 @import 'modules/loader';
-@import 'modules/overlay';
 @import 'modules/feedback';
 @import 'modules/terms';
+@import 'modules/top_menu';
+@import 'modules/bottom_menu';
 
 /* Elements */
-@import 'elements/details';
 @import 'elements/actions';
+@import 'elements/alerts';
+@import 'elements/tabs';
 
 /* Pages */
 @import 'pages/adult';
+@import 'pages/authorization';
+@import 'pages/intro';
 @import 'pages/personal';
 @import 'pages/news';
+@import 'pages/registration';
+@import 'pages/setplastic';
+@import 'pages/stores';
+@import 'pages/wallet';
 
 @import 'style';

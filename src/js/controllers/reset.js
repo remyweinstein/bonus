@@ -1,12 +1,14 @@
 'use strict';
 
+import { animatePage } from '@/js/libs/router.js'
 import { modifyInput } from '@/js/libs/functions.js'
 import { showPopup } from '@/js/libs/popups.js'
 import template from '@/js/views/reset.html'
 import { APP } from '@/js/config.js'
 
 export function render() {
-    document.querySelector(APP).innerHTML = template;
+    animatePage(template);
+//    APP.innerHTML = template;
     
     // Вход без пароля
     reset_phone.addEventListener("blur", (e) => {

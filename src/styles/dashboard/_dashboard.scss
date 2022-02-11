@@ -1,0 +1,1137 @@
+/* ==|========================
+   Dashboard/Dashboard
+   =========================== */
+
+.dashboardMain {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboardMenu {
+  width: 15%;
+  color: #33c3f0 !important;
+  text-align: start;
+  border-right: 1px #efefef ridge;
+}
+
+.dashboardMenuItem {
+  text-decoration: none;
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.dashboardContainer {
+  width: 96%;
+  margin: 0 auto;
+  padding: 12px 0px;
+}
+
+.dashboardMenuContent {
+  width: 85%;
+  text-align: start;
+  padding: 0px 40px;
+}
+
+.dashboardMenuContentBlockHead {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px #efefef ridge;
+  padding-bottom: 6px;
+}
+
+.dashboardMenuContentBlockData .content-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.dashboardMenuContentBlockData .content-item:nth-child(2n+1) {
+  background: #87CEEB;
+}
+
+.dashboardMenuContentTitle {
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: block;
+  font-size: 16px;
+}
+
+.dashboardMenuContentBlockDataPagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.dashboardMenuContentBlockDataPagination span {
+  background: #87ceeb;
+  margin: 0px 12px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dashboardMenuContentBlockHead .content-item:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dashboardMenuContentTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.dashboardAccount {
+  width: 85%;
+  padding: 0px 40px;
+}
+
+
+#updateAccount {
+  background: #33c3f0;
+  border: none;
+  color: #fff;
+}
+
+.dashboardAccountContent {
+  width: 35%;
+}
+
+.dashboardAccountContentItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+.dashboardAccountContentItem input {
+  margin: 0px;
+  width: 65%;
+}
+
+.dashboardAccountBtns {
+  width: 35%;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+.menuActive .menuName {
+  font-weight: 900;
+}
+
+.menuName:hover {
+  text-decoration: underline;
+}
+
+.page-active {
+  background: #000 !important;
+  color: #fff;
+}
+
+.dashboardMenuContentSearch {
+  display: flex;
+  justify-content: space-between;
+  width: 32%;
+}
+
+.dashboardUpdateSuccess {
+  position: absolute;
+  bottom: -20px;
+  font-size: 13px;
+  color: green;
+}
+
+.dashboardMenuContentExport {
+  position: absolute;
+  right: 33%;
+  top: 0px;
+}
+
+.dashboardMenuContentExport a {
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.content-item.transact {
+  flex-wrap: wrap;
+}
+
+.transactDetails {
+  width: 100%;
+  background: #DCDCDC;
+  padding: 8px 10px;
+}
+
+.content-item.account {
+  cursor: pointer;
+  padding: 3px 0px;
+}
+
+.content-item.account:hover {
+  background: #dcdcdc;
+}
+
+#back {
+  margin-right: 14px;
+}
+
+
+.menuName {
+  margin-left: 10px;
+}
+
+.reports {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.report-item {
+  border: 2px dashed #33c3f0;
+  margin-right: 16px;
+  padding: 10px 16px;
+}
+
+.report-item a {
+  text-decoration: none;
+  color: #000;
+}
+
+.report-item a:hover {
+  color: #33c3f0;
+  text-decoration: underline;
+}
+
+.accountTransactions {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  padding: 4px 0px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.accountTransactions:nth-child(2n+1) {
+  background: #87CEEB;
+}
+
+.dashboardMenu ul {
+  position: sticky;
+  top: 55px;
+}
+
+
+.dashboardAccountTransactionsTitle {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  margin-top: 14px;
+}
+
+.report-item-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 3px 0px;
+}
+
+.report-item-page:nth-child(2n+1) {
+  background: #87CEEB;
+}
+
+.dashboardMenuContentDateSort {
+  margin-right: 133px;
+}
+
+.report-item span:hover {
+  color: #33c3f0;
+  cursor: pointer;
+}
+
+#drawing-winners-btn {
+  display: none;
+  font-size: 1.3rem;
+  color: #1EAEDB;
+  border: none;
+  text-align: center;
+  text-transform: none;
+  font-weight: 400;
+  text-decoration: underline;
+  margin: 0px;
+  padding: 0px;
+  height: 33px;
+}
+
+.drawing-winners-block{
+  display: none;
+}
+
+.drawing-winners-block-show{
+  display: block !important;
+  padding-top: 44px;
+}
+
+.drawing-winners-block ul {
+  list-style: none;
+}
+
+/*.drawing-winners-block li {*/
+/*  border-bottom: 1px solid #33c3f0;*/
+/*  margin: 0px;*/
+/*  padding: 4px 0px;*/
+/*  font-size: 14px;*/
+/*}*/
+
+.drawing-winners-duration {
+  margin-bottom: 18px;
+}
+
+.drawing-winners-duration p {
+  font-weight: 600;
+}
+
+.drawing-winners-duration div {
+  border-bottom: 1px solid #33c3f0;
+}
+
+.drawing-winners p{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
+
+.drawing-winners-block span {
+  padding-right: 4px;
+  font-size: 13px;
+}
+
+.popup-drawing {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  left: 0px;
+  z-index: 990;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.popup-drawing-block {
+  width: 25%;
+  padding: 20px 25px;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  background: linear-gradient( 224deg , rgb(249, 222, 96) 0%, rgb(248, 222, 97) 25%, rgb(245, 158, 51) 100%);
+  overflow-x: hidden;
+  z-index: 2;
+  position: relative;
+
+}
+
+/*.popup-drawing-block-bg {*/
+/*  background: url(~assets/gift_red_left.png) left, url(~assets/gift_green_right.png) right bottom, url(~assets/ribbon_left.png) top left, url(~assets/ribbon_right.png) top right;*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: 93px, 65px, 80px, 80px;*/
+/*}*/
+
+.popup-drawing-block-top span {
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #e04324;
+  font-size: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.popup-drawing-block-info-title {
+  color: #e04324;
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.popup-drawing-block-info p {
+  color: #000;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.popup-drawing-block-info-preview {
+  color: #e04324 !important;
+  text-transform: uppercase;
+  font-size: 18px !important;
+}
+
+.popup-drawing-block-info {
+  margin: 30px 0px;
+  z-index: 2;
+  position: relative;
+}
+
+.popup-drawing-block-btns button {
+  margin: 0px;
+  margin-bottom: 0px;
+  width: 100%;
+  color: #fff;
+  background: #e04324;
+  margin-bottom: 16px;
+}
+
+.popup-drawing-block-btns {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  z-index: 2;
+  position: relative;
+}
+
+.popup-drawing-block-btn-first {
+  font-size: 20px !important;
+  font-weight: 900;
+  text-decoration: underline;
+  height: 50px;
+  border-radius: 24px;
+}
+
+.popup-drawing-block-btn-last {
+  font-size: 20px !important;
+  font-weight: 400;
+  text-decoration: underline;
+  height: 50px;
+  border-radius: 24px;
+}
+
+.remove-popup-drawing {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: red;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: 600;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.drawing-description-section-title {
+  color: #E04324;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.drawing-description-section {
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+#drawing-description p {
+  position: relative;
+  z-index: 2;
+}
+
+
+.button-reg {
+  background: #E04324 !important;
+  border-color: #DE4D21 !important;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  font-size: 22px;
+  height: auto !important;
+}
+
+
+
+.popup-drawing-block .drawing-decoration-item1 {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #FFAA01;
+  top: 36%;
+  left: -70px;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item2 {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #FFAA01;
+  top: 40%;
+  right: -39px;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item3 {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #FFAA01;
+  top: 31%;
+  right: -58px;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item4 {
+  position: absolute;
+  width: 90%;
+  height: 234px;
+  border-radius: 50%;
+  background: transparent;
+  top: -20%;
+  right: 5%;
+  z-index: 2;
+  border: 2px solid #e04324;
+}
+
+.popup-drawing-block .drawing-decoration-item5 {
+  position: absolute;
+  width: 100%;
+  height: 248px;
+  border-radius: 50%;
+  background: #fff;
+  top: -20%;
+  right: 0%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item6 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #FFAA01;
+  top: 10%;
+  right: -55px;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item7 {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #FFAA01;
+  top: 66%;
+  left: -10px;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item8 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FFAA01;
+  top: 77%;
+  left: 50%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item9 {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  top: 15%;
+  right: 11%;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.popup-drawing-block .drawing-decoration-item10 {
+  box-shadow: 0px 0px 10px 4px #fff;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  top: 16%;
+  right: 16%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item11 {
+  box-shadow: 0px 0px 4px 4px #fff;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  top: 18%;
+  right: 11%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item12 {
+  box-shadow: 0px 0px 6px 10px #fff;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  top: 21%;
+  right: 10%;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.popup-drawing-block .drawing-decoration-item13 {
+  box-shadow: 0px 0px 3px 8px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 36%;
+  left: 10%;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.popup-drawing-block .drawing-decoration-item14 {
+  box-shadow: 0px 0px 1px 3px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 40%;
+  left: 13%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item15 {
+  box-shadow: 0px 0px 1px 2px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 46%;
+  left: 2%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item16 {
+  box-shadow: 0px 0px 17px 19px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 35%;
+  left: 35%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item17 {
+  box-shadow: 0px 0px 17px 19px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 34%;
+  left: 68%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item18 {
+  box-shadow: 0px 0px 1px 2px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 46%;
+  left: 35%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item19 {
+  box-shadow: 0px 0px 1px 2px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 44%;
+  left: 38%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item20 {
+  box-shadow: 0px 0px 12px 15px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 44%;
+  left: 49%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item21 {
+  box-shadow: 0px 0px 3px 6px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 72%;
+  left: 19%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item22 {
+  box-shadow: 0px 0px 1px 2px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 83%;
+  left: 35%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item23 {
+  box-shadow: 0px 0px 1px 2px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 85%;
+  left: 25%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item24 {
+  box-shadow: 0px 0px 3px 4px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 82%;
+  left: 24%;
+  z-index: 1;
+}
+
+.popup-drawing-block .drawing-decoration-item25 {
+  box-shadow: 0px 0px 1px 2px #fff;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  top: 82%;
+  right: 20%;
+  z-index: 1;
+}
+
+.popup-drawing-block-top {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.drawing-winners-link {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media(max-width: 440px){
+  .popup-drawing-block {
+    width: 100%;
+    height: 100%;
+  }
+  .popup-drawing-block-btns button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .button-reg {
+    height: 50px !important;
+    border-radius: 28px;
+  }
+
+  #drawing-description {
+    z-index: 2;
+    position: relative;
+  }
+
+  .drawing-decoration-item1 {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: #FFAA01;
+    top: 36%;
+    left: -70px;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item2 {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: #FFAA01;
+    top: 40%;
+    right: -39px;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item3 {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #FFAA01;
+    top: 31%;
+    right: -58px;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item4 {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FFAA01;
+    top: 4%;
+    right: 50%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item5 {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #FFAA01;
+    top: 4%;
+    right: 27%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item6 {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #FFAA01;
+    top: 10%;
+    right: -55px;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item7 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #FFAA01;
+    top: 66%;
+    left: -10px;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item8 {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FFAA01;
+    top: 77%;
+    left: 50%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item9 {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+    top: 15%;
+    right: 11%;
+    z-index: 1;
+    opacity: 0.4;
+  }
+
+  .drawing-decoration-item10 {
+    box-shadow: 0px 0px 10px 4px #fff;
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #fff;
+    top: 16%;
+    right: 16%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item11 {
+    box-shadow: 0px 0px 4px 4px #fff;
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #fff;
+    top: 18%;
+    right: 11%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item12 {
+    box-shadow: 0px 0px 6px 10px #fff;
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #fff;
+    top: 21%;
+    right: 10%;
+    z-index: 1;
+    opacity: 0.8;
+  }
+
+  .drawing-decoration-item13 {
+    box-shadow: 0px 0px 3px 8px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 36%;
+    left: 10%;
+    z-index: 1;
+    opacity: 0.8;
+  }
+
+  .drawing-decoration-item14 {
+    box-shadow: 0px 0px 1px 3px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 40%;
+    left: 13%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item15 {
+    box-shadow: 0px 0px 1px 2px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 46%;
+    left: 2%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item16 {
+    box-shadow: 0px 0px 17px 19px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 35%;
+    left: 35%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item17 {
+    box-shadow: 0px 0px 17px 19px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 34%;
+    left: 68%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item18 {
+    box-shadow: 0px 0px 1px 2px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 46%;
+    left: 35%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item19 {
+    box-shadow: 0px 0px 1px 2px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 44%;
+    left: 38%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item20 {
+    box-shadow: 0px 0px 12px 15px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 44%;
+    left: 49%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item21 {
+    box-shadow: 0px 0px 3px 6px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 72%;
+    left: 19%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item22 {
+    box-shadow: 0px 0px 1px 2px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 83%;
+    left: 35%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item23 {
+    box-shadow: 0px 0px 1px 2px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 85%;
+    left: 25%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item24 {
+    box-shadow: 0px 0px 3px 4px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 82%;
+    left: 24%;
+    z-index: 1;
+  }
+
+  .drawing-decoration-item25 {
+    box-shadow: 0px 0px 1px 2px #fff;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: #fff;
+    top: 82%;
+    right: 20%;
+    z-index: 1;
+  }
+
+  .drawing-description-section-content {
+    font-weight: 600;
+  }
+
+  .overlay {
+    z-index: 4;
+  }
+
+  .popup-drawing-block-btn-first {
+    font-size: 16px !important;
+  }
+  .popup-drawing-block-btn-last {
+    font-size: 16px !important;
+    padding: 0px 10px;
+  }
+
+  .popup-drawing-block {
+    padding: 10px 25px;
+  }
+  .popup-drawing-block-top {
+    width: 95%;
+  }
+
+  .popup-drawing-block .drawing-decoration-item4 {
+    height: 253px;
+  }
+
+  .popup-drawing-block .drawing-decoration-item5 {
+    height: 272px;
+  }
+
+  
+}

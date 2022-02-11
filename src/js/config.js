@@ -7,7 +7,7 @@ export const API_URL = "https://bonus.stolica-dv.ru/api";
 export const TERMS_URL = "/politika-konfidentsialnosti";
 export const RULES_URL = "/pravila";
 export const LS_TOKEN_LINK = "LS_BearerToken";
-export const APP = ".main-app-space";
+export const APP = document.querySelector(".main-app-space");
 export const routes = {
     "adult": {
         hash: "#adult",

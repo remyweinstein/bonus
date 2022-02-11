@@ -1,15 +1,17 @@
 'use strict';
 
-import * as Conn from '@/js/libs/connections.js'
+import { animatePage } from '@/js/libs/router.js'
+import { getReferLink } from '@/js/libs/connections.js'
 import template from '@/js/views/refer.html'
 import { APP } from '@/js/config.js'
 
 export function render() {
-    document.querySelector(APP).innerHTML = template;
+    animatePage(template);
+//    APP.innerHTML = template;
 }
 
 function renderReferSection() {
-    Conn.getReferLink().then((response) => {
+    getReferLink().then((response) => {
         if (response.status) {
             if (!referQr.children.length) {
                 let qrCanvas = document.createElement("canvas");

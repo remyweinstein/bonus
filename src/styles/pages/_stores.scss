@@ -1,0 +1,98 @@
+/* ==|========================
+   Pages/Stores
+   =========================== */
+
+#stores iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.store_block {
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #E1E1E1;
+    padding: 16px 0px 16px 15px;
+    position: relative;
+    cursor: pointer;
+}
+
+.show_store {
+    position: absolute;
+    right: 2%;
+    top: 37%;
+    color: #999;
+    font-weight: 600;
+}
+
+.store_block-shedule {
+    color: #999;
+    font-size: 13px;
+}
+
+.store_map {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.store_map-block {
+    background: #fff;
+    border-radius: 8px;
+    z-index: 999;
+}
+
+.store_map-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(13, 14, 13, 0.7);
+    z-index: 998;
+}
+
+#map {
+    width: 600px;
+    height: 400px
+}
+
+#map_city {
+    background: #f1f1f1;
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 10px 0px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+#map_info {
+    padding: 18px 26px;
+}
+
+.map_info-item-key {
+    font-weight: 600;
+    padding-right: 10px;
+}
+
+.map_info-item {
+    padding: 3px 0px;
+}
+
+@media(max-width: 440px){
+    .store_block {
+        padding: 16px;
+        box-sizing: border-box;
+    }
+
+    .store_map-block {
+        width: 305px;
+    }
+
+    #map {
+        width: 305px;
+        height: 200px;
+    }
+
+}

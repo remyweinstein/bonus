@@ -3,47 +3,60 @@
    =========================== */
 
 #bottom-nav {
-  align-items: flex-end;
-  bottom: 0;
-  position: sticky;
-  width: 100%;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 2vw;
-  background-color: white;
-  z-index: 2;
+    align-items: flex-end;
+    bottom: 0;
+    position: sticky;
+    width: 100%;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 2vw;
+    background-color: white;
+    z-index: 2;
+    
+    &>div {
+        text-align: center;
+        padding: 10px 0;
+    }
+    
+    &>.current-section {
+        color: #28a960;
+    }
 }
-#bottom-nav > div {
-  text-align: center;
-  padding: 10px 0;
+
+
+.bottom-nav-element {
+    &.main {
+        &>i {
+            font-size: 4rem;
+        }
+        
+        &>div {
+            font-weight: bold;
+        }
+    }
 }
-#bottom-nav > .current-section {
-  color: #28a960;
-}
-.bottom-nav-element.main > i {
-    font-size: 4rem;
-}
-.bottom-nav-element.main > div {
-    font-weight: bold;
-}
+
 .important {
     border-color: crimson;
     animation-name: important-animation;
     animation-duration: 2s;
     animation-iteration-count: infinite;
 }
+
 @keyframes important-animation {
     0% {color: red;}
     50% {color: rgb(255, 41, 83);}
     75% {color: rgb(255, 0, 55);}
     100% {color: red;}
 }
+
 .important-back {
     animation-name: important-back-animation;
     animation-duration: 2s;
     animation-iteration-count: infinite;
 }
+
 @keyframes important-back-animation {
     0% {background-color: red;}
     50% {background-color: rgb(255, 41, 83);}

@@ -1,10 +1,10 @@
 'use strict';
 
-import * as Conf from '@/js/config.js'
-import * as Storage from '@/js/libs/storage.js'
-import * as Popup from '@/js/libs/popups.js'
-import * as Util from '@/js/libs/functions.js'
-import * as Animate from '@/js/libs/animate.js'
+import { API_URL } from '@/js/config.js'
+import { getBearerToken, clearAll, setSection } from '@/js/libs/storage.js'
+import { showPopup } from '@/js/libs/popups.js'
+import { showLoader, hideLoader } from '@/js/libs/functions.js'
+import { animate, quad } from '@/js/libs/animate.js'
 
 
 export async function reg() {
@@ -18,9 +18,9 @@ export async function reg() {
     lastPhone = reg_phone.value;
 
     reg_button.disabled = true;
-    Util.showLoader();
+    showLoader();
 
-    let response = await fetch(Conf.API_URL, {
+    let response = await fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8"
@@ -42,7 +42,7 @@ export async function reg() {
     let result = await response.json();
 
     reg_button.disabled = false;
-    Util.hideLoader();
+    hideLoader();
 
     if (result.status) {
         if (result.data && result.data.need_confirmation) {
@@ -61,7 +61,7 @@ export async function reg() {
         }
     } else {
         if (result.description)
-            Popup.showPopup("", result.description);
+            showPopup("", result.description);
     }
 }
 
@@ -112,11 +112,11 @@ export async function getReferLink() {
         "method": "getReferLink"
     };
 
-    let response = await fetch(Conf.API_URL, {
+    let response = await fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
-            "Authorization": "Bearer " + Storage.getBearerToken()
+            "Authorization": "Bearer " + getBearerToken()
         },
         body: JSON.stringify(body)
     });
@@ -137,7 +137,7 @@ export async function getResetConfirmationCode() {
             }
         };
 
-        let response = await fetch(Conf.API_URL, {
+        let response = await fetch(API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json;charset=utf-8"
@@ -151,9 +151,9 @@ export async function getResetConfirmationCode() {
             reset_confirmation.style.opacity = 0;
             reset_confirmation.style.display = "";
 
-            Animate.animate({
+            animate({
                 duration: 1000,
-                timing: Animate.quad,
+                timing: quad,
                 draw: function (progress, options) {
                     reset_confirmation.style.opacity = progress;
                 },
@@ -165,17 +165,17 @@ export async function getResetConfirmationCode() {
                 restartResetConfirmationTimer(result.data.seconds_left);
         } else {
             reset_button.disabled = false;
-            Popup.showPopup("Внимание", result.description);
+            showPopup("Внимание", result.description);
         }
     }
 }
 
 export function checkAuthorization() {
-    return fetch(Conf.API_URL, {
+    return fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
-            "Authorization": "Bearer " + Storage.getBearerToken()
+            "Authorization": "Bearer " + getBearerToken()
         },
         body: JSON.stringify({
             "method": "checkAuthorization"
@@ -215,7 +215,7 @@ export async function checkResetConfirmationCode() {
         }
     };
 
-    let response = await fetch(Conf.API_URL, {
+    let response = await fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8"
@@ -230,7 +230,7 @@ export async function checkResetConfirmationCode() {
     if (result.status) {
         Router.run("wallet");
     } else {
-        Popup.showPopup("Внимание", result.description, null, null, function () {
+        showPopup("Внимание", result.description, null, null, function () {
             reset_confirmation_code.value = "";
             reset_confirmation_code.focus();
         });
@@ -239,7 +239,7 @@ export async function checkResetConfirmationCode() {
 
 export async function updateCities() {
     if (!city.children.length) {
-        let response = await fetch(Conf.API_URL, {
+        let response = await fetch(API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json;charset=utf-8"
@@ -286,7 +286,7 @@ export async function confirmation() {
             }
         };
 
-        let response = await fetch(Conf.API_URL, {
+        let response = await fetch(API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json;charset=utf-8"
@@ -297,7 +297,7 @@ export async function confirmation() {
         let result = await response.json();
 
         confirmation_button.disabled = false;
-        Util.hideLoader();
+        hideLoader();
 
         if (result.status) {
             if (result.data.setNewPassword === undefined) {
@@ -308,7 +308,7 @@ export async function confirmation() {
         } else {
             if (result.description) {
                 reg_confirmation_code.value = "";
-                Popup.showPopup("Внимание", result.description);
+                showPopup("Внимание", result.description);
             }
         }
     }
@@ -325,7 +325,7 @@ export async function confirmationReset() {
             }
         };
 
-        let response = await fetch(Conf.API_URL, {
+        let response = await fetch(API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json;charset=utf-8"
@@ -369,7 +369,7 @@ export async function auth() {
             }
         };
 
-        let response = await fetch(Conf.API_URL, {
+        let response = await fetch(API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json;charset=utf-8"
@@ -382,14 +382,14 @@ export async function auth() {
         auth_button.disabled = false;
 
         if (result.status) {
-            Storage.clearAll();
-            Storage.setSection("wallet");
-            Storage.setBearerToken(result.data.token);
+            clearAll();
+            setSection("wallet");
+            setBearerToken(result.data.token);
 
             location.reload();
             // Router.run("wallet");
         } else {
-            Popup.showPopup("", result.description);
+            showPopup("", result.description);
         }
     }
 }
@@ -399,7 +399,7 @@ export async function logOff() {
         "method": "logOff"
     };
 
-    let response = await fetch(Conf.API_URL, {
+    let response = await fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8"
@@ -410,7 +410,7 @@ export async function logOff() {
     let result = await response.json();
 
     if (result.status) {
-        Storage.clearAll();
+        clearAll();
 
         location.reload();
     }
