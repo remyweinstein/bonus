@@ -1,7 +1,9 @@
 'use strict';
 
 import { showPopup } from '@/js/libs/popups.js'
+import { updateCities } from '@/js/libs/connections.js'
 import { modifyInput } from '@/js/libs/functions.js'
+import { mask } from '@/js/libs/mask.js'
 
 export function render() {
     
@@ -10,8 +12,8 @@ export function render() {
         reg_phone_popup.classList.remove("show");
     });
     reg_phone.addEventListener("change", (e) => {
-        auth_phone.value = reg_phone.value;
-        reset_phone.value = reg_phone.value;
+        //auth_phone.value = reg_phone.value;
+        //reset_phone.value = reg_phone.value;
     });
     reg_phone.addEventListener("input", (e) => {
         modifyInput(e.target);
@@ -44,10 +46,12 @@ export function render() {
             showPopup("Подтверждение звонком", "Вам позвонят на номер\n" + reg_phone.value, "На звонок отвечать не требуется, введите последние четыре цифры номера телефона с которого совершён звонок", "Запросить звонок", reg);
         }
     });
-    $('#reg_phone').mask('+7-000-000-00-00');
-    $('#reg_birthdate').mask('00-00-0000');
+
+    mask(document.querySelector('#reg_phone'), "+7 (___) ___ ____", 3);
+    mask(document.querySelector('#reg_birthdate'), "__/__/____", 0);
     
-    Conn.updateCities().then(result => {
+    /*
+    updateCities().then(result => {
         registration_cont.style.display = "";
         reg_confirmation.style.display = "none";
 
@@ -55,7 +59,7 @@ export function render() {
         discount.checked = false;
         document.getElementById("loyalty-system").style.display = (city.options[city.options.selectedIndex].getAttribute("default-discount") === 0 ? "none" : "");
     });
-    
+    */
     document.querySelectorAll(".system_tabs-head-item").forEach(item => {
         item.addEventListener("click", () => {
             item.parentNode.querySelectorAll(".system_tabs-head-item").forEach(function(el) {

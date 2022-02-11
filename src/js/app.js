@@ -1,8 +1,5 @@
 'use strict';
 
-//import $ from 'jquery';
-import '@/js/vendor/jquery.mask.min.js'
-
 import { routes, APP } from '@/js/config.js'
 import { getSection } from '@/js/libs/storage.js'
 import { initPopups } from '@/js/libs/popups';
@@ -78,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
 }, false);
 
 export function init() {
-    let section = getSection();
+    let section = getSection() ? getSection() : 'adult';
     initPopups();
 
     // Сокрытие всплывающего окна
@@ -101,6 +98,8 @@ export function init() {
             });
         }
     });
+    
+    console.log(section);
     
     document.querySelector("#top-nav").style.display = (sections[section] && sections[section].title ? "" : "none");
     document.querySelector("#top-nav-back").style.display = (sections[section] && sections[section].prevSection ? "" : "none");

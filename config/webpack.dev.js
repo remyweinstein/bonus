@@ -18,14 +18,7 @@ module.exports = merge(common, {
     port: 8080,
   },
     
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      'window.$': 'jquery'
-    })
-  ],
+  plugins: [],
 
   module: {
     rules: [

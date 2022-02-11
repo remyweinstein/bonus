@@ -2,6 +2,7 @@
 
 import { modifyInput } from '@/js/libs/functions.js'
 import { showPopup } from '@/js/libs/popups.js'
+import { mask } from '@/js/libs/mask.js'
 
 export function render() {
     // Вход без пароля
@@ -26,8 +27,8 @@ export function render() {
         }
     });
 
-    $('#reset_phone').mask('+7-000-000-00-00');
-    $('#reset_confirmation_code').mask('0000');
+    mask(document.querySelector('#reset_phone'), "+7 (___) ___ ____", 3);
+    //$('#reset_confirmation_code').mask('0000');
 }
 
 function canGetResetConfirmationCode() {

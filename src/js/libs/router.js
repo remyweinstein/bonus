@@ -20,7 +20,7 @@ export function run(section) {
     }
 }
 
-export function animatePage(template) {
+function animatePage(template) {
     let div = document.createElement('div');
     div.innerHTML = template;
     let newPage = div.children[0];
