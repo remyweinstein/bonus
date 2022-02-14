@@ -16,7 +16,7 @@ export function render() {
     });
     reset_phone.addEventListener("input", () => {
         reset_button.disabled = (reset_phone.value ? false : true);
-        modifyInput(e.target)
+        modifyInput(e.target);
     });
     reset_confirmation_code.addEventListener("input", (e) => {
         reset_confirmation_button.disabled = (reset_confirmation_code.value.length === 4 ? false : true);
@@ -28,7 +28,6 @@ export function render() {
     });
 
     mask(document.querySelector('#reset_phone'), "+7 (___) ___ ____", 3);
-    //$('#reset_confirmation_code').mask('0000');
 }
 
 function canGetResetConfirmationCode() {

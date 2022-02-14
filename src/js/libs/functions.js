@@ -99,3 +99,46 @@ export function remove(els) {
         item.parentNode.removeChild(item);
     });
 }
+
+export function addClass(els, clas) {
+    changeClass(els, clas, 'add');
+}
+
+export function removeClass(els, clas) {
+    changeClass(els, clas, 'remove');
+}
+
+export function toggleClass(els, clas) {
+    changeClass(els, clas, 'toggle');
+}
+
+function changeClass(els, clas, type) {
+    if (!isNodeList(els) && !Array.isArray(els)) {
+        els = [els];
+    }
+    els.forEach(function(item) {
+        switch (type) {
+            case "remove":
+                item.classList.remove(clas);
+                break;
+            case "add":
+                item.classList.add(clas);
+                break;
+            case "toggle":
+                item.classList.toggle(clas);
+                break;
+            default:
+                item.classList.toggle(clas);
+        }
+    });
+}
+
+function isNodeList(nodes) {
+    return typeof nodes === 'object' &&
+        /^\[object (HTMLCollection|NodeList|Object)\]$/.test(Object.prototype.toString.call(nodes)) &&
+        (typeof nodes.length === 'number') &&
+        (nodes.length === 0 || (typeof nodes[0] === "object" && nodes[0].nodeType > 0));
+}
+
+export let siblings = el => [].slice.call(el.parentNode.children).filter(child => (child !== el));
+

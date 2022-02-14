@@ -1,10 +1,48 @@
 'use strict';
 
 import { showPopup } from '@/js/libs/popups.js'
-import { API_URL } from '@/js/config.js'
-import { getStoreToGeoMap } from '@/js/libs/geo.js'
+import { APP, API_URL } from '@/js/config.js'
 
 export function render() {
+    Event.click = function (event) {
+        var target = event.target;
+
+        while (target !== this) {
+            if (target.hasAttribute("data-close-map")) {
+                document.querySelectorAll(".store_map").forEach(function(el) {
+                    el.parentNode.removeChild(el);
+                });
+                return;
+            }
+            
+            if (target.classList.contains("store_map-bg")) {
+                document.querySelectorAll(".store_map").forEach(function(el) {
+                    el.parentNode.removeChild(el);
+                });
+                return;
+            }
+            
+            if (target.parentNode.classList.contains("store_block")) {
+                let el = target.parentNode;
+                let coordinates = el.dataset.coordinates;
+                let title = el.querySelector(".store_block-title").innerHTML;
+                let shedule = el.querySelector(".store_block-shedule").innerHTML;
+                let phone = el.dataset.phone;
+                let city = el.dataset.city;
+                let rsa_id = el.dataset.rsa;
+
+                getStoreToGeoMap(coordinates, city, title, shedule, phone, rsa_id);
+                return;
+            }
+
+            if (target) {
+                target = target.parentNode;
+            } else {
+                break;
+            }
+        }
+    };
+    
     // Выбор города
     store_cities.addEventListener("change", (e) => {
         getStoresList(store_cities.value);
@@ -76,24 +114,46 @@ export async function getStoresList(city_id) {
         div.innerHTML = "<div class='store_block' data-rsa='" + city.rsa_id + "' data-coordinates='" + city.coordinates + "' data-phone='" + city.phone + "' data-city='" + city.city_name + "'><div class='store_block-title'>" + city.store_name + "</div><div class='store_block-shedule'>" + city.shedule + "</div><span class='show_store'>></span></div>";
         document.querySelector("#storesList").append(div.children[0]);
     });
+}
+
+function getStoreToGeoMap(coordinates, city, title, shedule, phone, rsa_id) {
+    //document.querySelectorAll(".store_map").forEach(function(el) {
+    //    el.parentNode.removeChild(el);
+    //});
     
-    document.addEventListener("click", (e) => {
+    let div = document.createElement("div");
+    div.innerHTML = "<div class='store_map'><div class='store_map-bg'></div><div class='store_map-block'><div id='map_city'>" + city + "<div class='closebtn' data-close-map>&times;</div></div><div id='map_info'><div class='map_info-item'><span class='map_info-item-key'>Адрес:</span><span class='map_info-item-value'>" + title + "</span></div><div class='map_info-item'><span class='map_info-item-key'>Время работы:</span><span class='map_info-item-value'>" + shedule + "</span></div><div class='map_info-item'><span class='map_info-item-key'>Телефон:</span><span class='map_info-item-value'><a href='tel:+7" + phone.slice(1) + "'>" + phone + "</a></span></div></div><div id='map'></div></div>";
+    APP.append(div.children[0]);
 
-        if (e.target.classList.contains("store_map-bg")) {
-            document.querySelectorAll(".store_map").forEach(function(el) {
-                el.parentNode.removeChild(el);
-            });
-        }
-        if (e.target.parentNode.classList.contains("store_block")) {
-            let el = e.target.parentNode;
-            let coordinates = el.dataset.coordinates;
-            let title = el.querySelector(".store_block-title").innerHTML;
-            let shedule = el.querySelector(".store_block-shedule").innerHTML;
-            let phone = el.dataset.phone;
-            let city = el.dataset.city;
-            let rsa_id = el.dataset.rsa;
+    let x = parseFloat(coordinates.split(',')[0]);
+    let y = parseFloat(coordinates.split(',')[1]);
 
-            getStoreToGeoMap(coordinates, city, title, shedule, phone, rsa_id);
+    var myMap = new ymaps.Map("map", {
+        center: [x, y],
+        zoom: 12
+    });
+
+    let objectManager = new ymaps.ObjectManager({
+        clusterize: true,
+        gridSize: 32,
+        clusterDisableClickZoom: true
+    });
+
+    objectManager.objects.options.set('preset', 'islands#greenDotIcon');
+    objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
+
+    objectManager.add({
+        type: 'Feature',
+        id: rsa_id,
+        geometry: {
+            type: 'Point',
+            coordinates: [x, y]
+        },
+        properties: {
+            hintContent: title,
+            balloonContentHeader: '',
         }
     });
+
+    myMap.geoObjects.add(objectManager);
 }

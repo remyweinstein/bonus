@@ -95,7 +95,7 @@ async function changePassword() {
         body: JSON.stringify({
             "method": "changePassword",
             "data": {
-                "new_password": personal_new_pass.value,
+                "new_password": personal_new_pass.value
             }
         })
     });
@@ -153,7 +153,7 @@ export function changeCardType() {
         body: JSON.stringify({
             "method": "changeCardType",
             "data": {
-                "discount": document.querySelector('input[name="systemChange"]:checked').value,
+                "discount": document.querySelector('input[name="systemChange"]:checked').value
             }
         })
     }).then(response => response.json()).catch(error => {
@@ -209,7 +209,7 @@ export async function setCard() {
     let body = {
         "method": "setCard",
         "data": {
-            "card_number": plasticNumber.value,
+            "card_number": plasticNumber.value
         }
     };
 

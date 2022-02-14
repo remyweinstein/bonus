@@ -4,9 +4,38 @@ import { showPopup } from '@/js/libs/popups.js'
 import { updateCities } from '@/js/libs/connections.js'
 import { modifyInput } from '@/js/libs/functions.js'
 import { mask } from '@/js/libs/mask.js'
+import { siblings, addClass } from '@/js/libs/functions.js'
 
 export function render() {
-    
+    Event.click = function (event) {
+        var target = event.target;
+
+        while (target !== this) {
+            //toggle(document.querySelectorAll("div.system_tabs-head-item-change"), "tab_h_active");
+            //toggle(document.querySelectorAll(".system_tabs-content-item-change"), "tab_c_active");
+
+            if (target.hasAttribute('data-change-tab')) {
+                let targetContent = document.querySelectorAll(".system_tabs-content-item")[(target.dataset.changeTab - 1)];
+                addClass(target, "tab_h_active");
+                addClass(targetContent, "tab_c_active");
+                siblings(target).forEach(function(item) {
+                    item.classList.remove("tab_h_active");
+                });
+                siblings(targetContent).forEach(function(item) {
+                    item.classList.remove("tab_c_active");
+                });
+                                
+                return;
+            }
+
+            if (target) {
+                target = target.parentNode;
+            } else {
+                break;
+            }
+        }
+    };
+
     reg_phone.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");
         reg_phone_popup.classList.remove("show");
@@ -60,18 +89,6 @@ export function render() {
         document.getElementById("loyalty-system").style.display = (city.options[city.options.selectedIndex].getAttribute("default-discount") === 0 ? "none" : "");
     });
     */
-    document.querySelectorAll(".system_tabs-head-item").forEach(item => {
-        item.addEventListener("click", () => {
-            item.parentNode.querySelectorAll(".system_tabs-head-item").forEach(function(el) {
-                el.classList.remove("tab_h_active");
-            });
-            item.classList.add("tab_h_active");
-            document.querySelectorAll(".system_tabs-head-item").forEach(function(el) {
-                el.classList.remove("tab_c_active");
-            });
-            item.classList.add("tab_c_active");
-        });
-    });
 }
 
 function checkReg() {

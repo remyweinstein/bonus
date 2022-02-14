@@ -9,7 +9,7 @@ import { checkAuthorization } from '@/js/libs/connections.js'
 import { animate, quad } from '@/js/libs/animate.js'
 import { Events } from '@/js/libs/Events.js'
 
-let lastPhone = "";
+        let lastPhone = "";
 let secondsInterval = null;
 let secondsLeft = 0;
 
@@ -29,28 +29,28 @@ document.addEventListener("DOMContentLoaded", function () {
     //     });
     // }
     init();
-    
-    Event.clickLink = function(event) {
-      var target = event.target;
 
-      while (target !== this) {
-        if (target.hasAttribute('data-link-section')) {
-            run(target.dataset.linkSection);
-            //return;
-        }
-        
-        if (target.hasAttribute('data-click')) {
-            let contrl = target.dataset.click.split('.');
-            findFunction(contrl[1], contrl[0]);
-            return;
-        }
+    Event.clickLink = function (event) {
+        let target = event.target;
 
-        if (target) {
-            target = target.parentNode;
-        } else {
-            break;
+        while (target !== this) {
+            if (target.hasAttribute('data-link-section')) {
+                run(target.dataset.linkSection);
+                //return;
+            }
+
+            if (target.hasAttribute('data-click')) {
+                let contrl = target.dataset.click.split('.');
+                findFunction(contrl[1], contrl[0]);
+                return;
+            }
+
+            if (target) {
+                target = target.parentNode;
+            } else {
+                break;
+            }
         }
-      }
     };
     document.addEventListener('click', Event.clickLink);
 
@@ -98,9 +98,7 @@ export function init() {
             });
         }
     });
-    
-    console.log(section);
-    
+
     document.querySelector("#top-nav").style.display = (sections[section] && sections[section].title ? "" : "none");
     document.querySelector("#top-nav-back").style.display = (sections[section] && sections[section].prevSection ? "" : "none");
     document.querySelector("#top-nav-msg").style.display = (sections[section] && !sections[section].prevSection ? "" : "none");
@@ -118,7 +116,7 @@ export function init() {
     document.querySelectorAll(".store_map").forEach(function (el) {
         el.parentNode.removeChild(el);
     });
-    
+
     clearTimeout(window.walletUpdater);
     hideLoader();
 }
