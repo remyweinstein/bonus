@@ -3,20 +3,20 @@
 import { routes, APP } from '@/js/config.js'
 import { getSection } from '@/js/libs/storage.js'
 import { initPopups } from '@/js/libs/popups';
-import { findFunction, hideLoader, closeNav } from '@/js/libs/functions.js'
+import { findFunction, hideLoader, closeNav, remove } from '@/js/libs/functions.js'
 import { run } from '@/js/libs/router.js';
 import { checkAuthorization } from '@/js/libs/connections.js'
 import { animate, quad } from '@/js/libs/animate.js'
 import { Events } from '@/js/libs/Events.js'
 
-        let lastPhone = "";
+let lastPhone = "";
 let secondsInterval = null;
 let secondsLeft = 0;
 
 let resetCodeTimer = null;
 let resetCodeTimerValue = 0;
 let sections = routes;
-Event = new Events();
+let Event = new Events();
 
 // Инициализация св-в приложения
 document.addEventListener("DOMContentLoaded", function () {
@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             if (target.hasAttribute('data-click')) {
+                console.log(target.dataset.click);
                 let contrl = target.dataset.click.split('.');
                 findFunction(contrl[1], contrl[0]);
                 return;
@@ -113,10 +114,7 @@ export function init() {
             item.classList.add("current-section");
         }
     });
-    document.querySelectorAll(".store_map").forEach(function (el) {
-        el.parentNode.removeChild(el);
-    });
-
+    remove(".store_map");
     clearTimeout(window.walletUpdater);
     hideLoader();
 }

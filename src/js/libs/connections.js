@@ -1,3 +1,4 @@
+/* global fetch */
 'use strict';
 
 import { API_URL } from '@/js/config.js'

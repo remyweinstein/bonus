@@ -5,6 +5,25 @@ import { showPopup } from '@/js/libs/popups.js'
 import { mask } from '@/js/libs/mask.js'
 
 export function render() {
+    Event.click = function (event) {
+        var target = event.target;
+
+        while (target !== this) {
+            if (target.id === "reset_button") {
+                if (canGetResetConfirmationCode()) {
+                    showPopup("Подтверждение звонком", "Ожидайте звонок на номер:\n" + reg_phone.value, "На звонок отвечать не требуется, введите последние 4-ре цифры номера телефона входящего звонка.", "Запросить звонок", getResetConfirmationCode);
+                }
+                return;
+            }
+
+            if (target) {
+                target = target.parentNode;
+            } else {
+                break;
+            }
+        }
+    };
+
     // Вход без пароля
     reset_phone.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");
@@ -20,11 +39,6 @@ export function render() {
     });
     reset_confirmation_code.addEventListener("input", (e) => {
         reset_confirmation_button.disabled = (reset_confirmation_code.value.length === 4 ? false : true);
-    });
-    reset_button.addEventListener("click", () => {
-        if (canGetResetConfirmationCode()) {
-            showPopup("Подтверждение звонком", "Ожидайте звонок на номер:\n" + reg_phone.value, "На звонок отвечать не требуется, введите последние 4-ре цифры номера телефона входящего звонка.", "Запросить звонок", getResetConfirmationCode);
-        }
     });
 
     mask(document.querySelector('#reset_phone'), "+7 (___) ___ ____", 3);

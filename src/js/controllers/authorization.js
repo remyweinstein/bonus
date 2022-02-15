@@ -1,6 +1,6 @@
 'use strict';
 
-import { modifyInput } from '@/js/libs/functions.js'
+import { modifyInput, togglePassword, addClass, removeClass, siblings, changeTabs } from '@/js/libs/functions.js'
 import { mask } from '@/js/libs/mask.js'
 
 export function render() {
@@ -9,12 +9,12 @@ export function render() {
 
         while (target !== this) {
             if (target.hasAttribute('data-change-tab')) {
-                const targetContent = document.querySelectorAll(".system_tabs-content-item-change")[(target.dataset.changeTab - 1)];
-                addClass(target, "tab_h_active");
-                addClass(targetContent, "tab_c_active");
-                removeClass(siblings(target), "tab_h_active");
-                removeClass(siblings(targetContent), "tab_c_active");
+                changeTabs(target);
                 return;
+            }
+            
+            if (target.id === "auth_pass_toggle") {
+                togglePassword(target);
             }
 
             if (target) {
@@ -39,10 +39,6 @@ export function render() {
     auth_pass.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");
         auth_pass_popup.classList.remove("show");
-    });
-    auth_pass_toggle.addEventListener("click", () => {
-        auth_pass.type = (auth_pass.type === "password" ? "text" : "password");
-        auth_pass_toggle.style.color = (auth_pass.type === "password" ? "black" : "#4eb5e6");
     });
     
     mask(document.querySelector('#auth_phone'), "+7 (___) ___ ____", 3);

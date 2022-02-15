@@ -4,27 +4,32 @@ import { showPopup } from '@/js/libs/popups.js'
 import { updateCities } from '@/js/libs/connections.js'
 import { modifyInput } from '@/js/libs/functions.js'
 import { mask } from '@/js/libs/mask.js'
-import { siblings, addClass } from '@/js/libs/functions.js'
+import { siblings, addClass, togglePassword, changeTabs, removeClass } from '@/js/libs/functions.js'
 
 export function render() {
     Event.click = function (event) {
         var target = event.target;
 
         while (target !== this) {
-            //toggle(document.querySelectorAll("div.system_tabs-head-item-change"), "tab_h_active");
-            //toggle(document.querySelectorAll(".system_tabs-content-item-change"), "tab_c_active");
-
             if (target.hasAttribute('data-change-tab')) {
-                let targetContent = document.querySelectorAll(".system_tabs-content-item")[(target.dataset.changeTab - 1)];
-                addClass(target, "tab_h_active");
-                addClass(targetContent, "tab_c_active");
-                siblings(target).forEach(function(item) {
-                    item.classList.remove("tab_h_active");
-                });
-                siblings(targetContent).forEach(function(item) {
-                    item.classList.remove("tab_c_active");
-                });
-                                
+                changeTabs(target);
+                return;
+            }
+            
+            if (target.id === "reg_pass_toggle") {
+                togglePassword(target);
+                return;
+            }
+            
+            if (target.id === "reg_pass_toggle_confirm") {
+                togglePassword(target);
+                return;
+            }
+            
+            if (target.id === "reg_button") {
+                if (checkReg()) {
+                    showPopup("Подтверждение звонком", "Вам позвонят на номер\n" + reg_phone.value, "На звонок отвечать не требуется, введите последние четыре цифры номера телефона с которого совершён звонок", "Запросить звонок", reg);
+                }
                 return;
             }
 
@@ -59,21 +64,6 @@ export function render() {
     reg_birthdate.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");
         reg_birthdate_popup.classList.remove("show");
-    });
-    reg_pass_toggle.addEventListener("click", () => {
-        reg_pass.type = (reg_pass.type === "password" ? "text" : "password");
-        reg_pass_confirm.type = (reg_pass_confirm.type === "password" ? "text" : "password");
-        reg_pass_toggle.style.color = (reg_pass.type === "password" ? "black" : "#4eb5e6");
-    });
-    reg_pass_toggle_confirm.addEventListener("click", () => {
-        reg_pass_confirm.type = (reg_pass_confirm.type === "password" ? "text" : "password");
-        reg_pass.type = (reg_pass.type === "password" ? "text" : "password");
-        reg_pass_toggle_confirm.style.color = (reg_pass_confirm.type === "password" ? "black" : "#4eb5e6");
-    });
-    reg_button.addEventListener("click", () => {
-        if (checkReg()) {
-            showPopup("Подтверждение звонком", "Вам позвонят на номер\n" + reg_phone.value, "На звонок отвечать не требуется, введите последние четыре цифры номера телефона с которого совершён звонок", "Запросить звонок", reg);
-        }
     });
 
     mask(document.querySelector('#reg_phone'), "+7 (___) ___ ____", 3);

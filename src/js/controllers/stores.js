@@ -1,7 +1,9 @@
+/* global fetch */
 'use strict';
 
 import { showPopup } from '@/js/libs/popups.js'
 import { APP, API_URL } from '@/js/config.js'
+import { remove } from '@/js/libs/functions.js'
 
 export function render() {
     Event.click = function (event) {
@@ -9,29 +11,17 @@ export function render() {
 
         while (target !== this) {
             if (target.hasAttribute("data-close-map")) {
-                document.querySelectorAll(".store_map").forEach(function(el) {
-                    el.parentNode.removeChild(el);
-                });
+                remove(".store_map");
                 return;
             }
             
             if (target.classList.contains("store_map-bg")) {
-                document.querySelectorAll(".store_map").forEach(function(el) {
-                    el.parentNode.removeChild(el);
-                });
+                remove(".store_map");
                 return;
             }
             
             if (target.parentNode.classList.contains("store_block")) {
-                let el = target.parentNode;
-                let coordinates = el.dataset.coordinates;
-                let title = el.querySelector(".store_block-title").innerHTML;
-                let shedule = el.querySelector(".store_block-shedule").innerHTML;
-                let phone = el.dataset.phone;
-                let city = el.dataset.city;
-                let rsa_id = el.dataset.rsa;
-
-                getStoreToGeoMap(coordinates, city, title, shedule, phone, rsa_id);
+                getStoreToGeoMap(target.parentNode);
                 return;
             }
 
@@ -44,7 +34,7 @@ export function render() {
     };
     
     // Выбор города
-    store_cities.addEventListener("change", (e) => {
+    store_cities.addEventListener("change", () => {
         getStoresList(store_cities.value);
     });
 
@@ -53,7 +43,7 @@ export function render() {
 
 export function updateStoresData() {
     if (!storesList.children.length) {
-        let city_id = false;
+        const city_id = false;
         getStores().then(result => {
             if (result.status) {
                 result.cities.forEach(city => {
@@ -116,17 +106,22 @@ export async function getStoresList(city_id) {
     });
 }
 
-function getStoreToGeoMap(coordinates, city, title, shedule, phone, rsa_id) {
-    //document.querySelectorAll(".store_map").forEach(function(el) {
-    //    el.parentNode.removeChild(el);
-    //});
+function getStoreToGeoMap(el) {
+    const coordinates = el.dataset.coordinates,
+          title = el.querySelector(".store_block-title").innerHTML,
+          shedule = el.querySelector(".store_block-shedule").innerHTML,
+          phone = el.dataset.phone,
+          city = el.dataset.city,
+          rsa_id = el.dataset.rsa;
+  
+    remove(".store_map");
     
     let div = document.createElement("div");
     div.innerHTML = "<div class='store_map'><div class='store_map-bg'></div><div class='store_map-block'><div id='map_city'>" + city + "<div class='closebtn' data-close-map>&times;</div></div><div id='map_info'><div class='map_info-item'><span class='map_info-item-key'>Адрес:</span><span class='map_info-item-value'>" + title + "</span></div><div class='map_info-item'><span class='map_info-item-key'>Время работы:</span><span class='map_info-item-value'>" + shedule + "</span></div><div class='map_info-item'><span class='map_info-item-key'>Телефон:</span><span class='map_info-item-value'><a href='tel:+7" + phone.slice(1) + "'>" + phone + "</a></span></div></div><div id='map'></div></div>";
     APP.append(div.children[0]);
 
-    let x = parseFloat(coordinates.split(',')[0]);
-    let y = parseFloat(coordinates.split(',')[1]);
+    const x = parseFloat(coordinates.split(',')[0]),
+          y = parseFloat(coordinates.split(',')[1]);
 
     var myMap = new ymaps.Map("map", {
         center: [x, y],
@@ -151,7 +146,7 @@ function getStoreToGeoMap(coordinates, city, title, shedule, phone, rsa_id) {
         },
         properties: {
             hintContent: title,
-            balloonContentHeader: '',
+            balloonContentHeader: ''
         }
     });
 

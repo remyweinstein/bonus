@@ -11,6 +11,14 @@ export function modifyInput(el) {
   if (el.value.length === 1 && +el.value[0] === 8) el.value = "+7-";
 }
 
+export function changeTabs(target) {
+    const targetContent = document.querySelectorAll(".system_tabs-content-item-change")[(target.dataset.changeTab - 1)];
+    addClass(target, "tab_h_active");
+    addClass(targetContent, "tab_c_active");
+    removeClass(siblings(target), "tab_h_active");
+    removeClass(siblings(targetContent), "tab_c_active");
+}
+
 export function openNav() {
   document.getElementById("topnav").style.width = "100%";
 }
@@ -27,6 +35,19 @@ export function removeChildrens(element) {
 
 export function confirmAdult() {
   Router.run(getSection());
+}
+
+export function togglePassword(target) {
+    let inpt = target.previousElementSibling;
+    if (inpt.type === "password") {
+        inpt.type = "text";
+        target.style.color = "#4eb5e6";
+        target.classList.add("close_eye");
+    } else{
+        inpt.type = "password";
+        target.style.color = "black";
+        target.classList.remove("close_eye");
+    }
 }
 
 export function showLoader() {
@@ -95,6 +116,12 @@ export function showRules() {
 }
 
 export function remove(els) {
+    if (typeof els === 'string' || els instanceof String) {
+        els = document.querySelectorAll(els);
+    }
+    if (!isNodeList(els) && !Array.isArray(els)) {
+        els = [els];
+    }
     els.forEach(function(item) {
         item.parentNode.removeChild(item);
     });

@@ -13,7 +13,7 @@ export function animate(options) {
 
         if (timeFraction < 1) {
             requestAnimationFrame(animate);
-        } else if (options.callback != undefined) {
+        } else if (options.callback !== undefined) {
             options.callback(options);
         }
     });

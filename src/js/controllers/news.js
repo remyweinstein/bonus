@@ -1,3 +1,4 @@
+/* global fetch */
 'use strict';
 
 import { getBearerToken } from '@/js/libs/storage.js'
