@@ -2,6 +2,7 @@
 
 import { getReferLink } from '@/js/libs/connections.js'
 import { animate, quad } from '@/js/libs/animate.js'
+import QRious from '@/js/vendor/qrious.min.js'
 
 export function render() {
     renderReferSection();

@@ -6,6 +6,7 @@ import { showPopup } from '@/js/libs/popups.js'
 import { animate, quad } from '@/js/libs/animate.js'
 import { cardImageSRC, cardImageW, API_URL, cardImageH } from '@/js/config.js'
 import { removeChildrens, toggleClass } from '@/js/libs/functions.js'
+import QRious from '@/js/vendor/qrious.min.js'
 
 clearTimeout(window.walletUpdater);
 
