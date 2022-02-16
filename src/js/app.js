@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             
             if (target.id === "topnav-feedback" || target.id === "top-nav-msg") {
-                console.log('zhopa');
                 feedback.style.display = '';
                 return;
             }
