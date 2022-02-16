@@ -42,11 +42,13 @@ export function togglePassword(target) {
     if (inpt.type === "password") {
         inpt.type = "text";
         target.style.color = "#4eb5e6";
-        target.classList.add("close_eye");
+        target.classList.add("icon-eye-off");
+        target.classList.remove("icon-eye");
     } else{
         inpt.type = "password";
         target.style.color = "black";
-        target.classList.remove("close_eye");
+        target.classList.remove("icon-eye-off");
+        target.classList.add("icon-eye");
     }
 }
 

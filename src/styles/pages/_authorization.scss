@@ -17,18 +17,9 @@
         width: 40px; 
         height: 40px;
         position: relative;
-        
-        &.close_eye {
-            &::after {
-                content: "\\";
-                position: absolute;
-                top: -9px;
-                left: 13px;
-                font-weight: 900;
-                font-size: 33px;
-                transform: rotate(-30deg);
-            }
-        }
+        font-size: 1.25em;
+        right: 0px;
+        top: -4px;
     }
 }
 

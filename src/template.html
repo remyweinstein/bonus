@@ -6,8 +6,6 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <title>Столица.Бонусы</title>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://api-maps.yandex.ru/2.1/?apikey=7a895d82-a17c-4fbd-8849-04120c71e5ae&amp;lang=ru_RU&amp;load=Geolink,geolocation,Map,ObjectManager" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
     </head>
@@ -94,7 +92,7 @@
             <div class="topnav-top">
                 <a href="javascript:void(0)" class="closebtn"  data-click="Util.closeNav">&times;</a>
                 <span class="topnav-top-title">Меню</span>
-                <i id="topnav-nav-menu" class="fa fa-bars"  data-click="Util.closeNav"></i>
+                <i id="topnav-nav-menu" class="icon-menu"  data-click="Util.closeNav"></i>
             </div>
             <div class="overlay-content">
                 <div data-click="Util.closeNav" data-link-section="wallet">Кошелек</div>
@@ -105,11 +103,11 @@
             </div>
             <div class="topnav-bottom">
                 <div class="topnav-bottom-feedback" id="topnav-feedback">
-                    <i class="fa fa-question" aria-hidden="true" style="color: #bbb;"></i>
+                    <i class="icon-help" aria-hidden="true" style="color: #bbb;"></i>
                     <span data-click="Util.closeNav">Задать вопрос</span>
                 </div>
                 <div class="topnav-bottom-feedback">
-                    <i class="fa fa-sign-out" aria-hidden="true" style="color: #fff"></i>
+                    <i class="icon-logout" aria-hidden="true" style="color: #fff"></i>
                     <span data-click="Conn.logOff">Выход</span>
                 </div>
             </div>
@@ -117,30 +115,30 @@
 
         <div class="wrapper">
             <header id="top-nav">
-                <i id="top-nav-back" class="material-icons" data-click="Router.routePrevSection">keyboard_arrow_left</i>
-                <i id="top-nav-close" class="material-icons" data-click="Router.routePrevSection">close</i>
-                <i id="top-nav-msg" class="fa fa-envelope-o" aria-hidden="true" data-click="Util.closeNav"></i>
+                <i id="top-nav-back" class="icon-angle-left" data-click="Router.routePrevSection"></i>
+                <i id="top-nav-close" class="icon-cancel" data-click="Router.routePrevSection"></i>
+                <i id="top-nav-msg" class="icon-mail" aria-hidden="true" data-click="Util.closeNav"></i>
                 <h6 id="top-nav-title"></h6>
-                <i id="top-nav-menu" class="fa fa-bars" data-click="Util.openNav"></i>
+                <i id="top-nav-menu" class="icon-menu" data-click="Util.openNav"></i>
             </header>
 
             <div class="main-app-space"></div>
 
             <footer id="bottom-nav" style="display: none;">
                 <div class="bottom-nav-element" data-link-section="news">
-                    <i class="material-icons">local_offer</i>
+                    <i class="icon-newspaper"></i>
                     <div>Акции</div>
                 </div>
                 <div class="bottom-nav-element" data-link-section="stores">
-                    <i class="material-icons">map</i>
+                    <i class="icon-location"></i>
                     <div>Карты</div>
                 </div>
                 <div class="bottom-nav-element" data-link-section="wallet">
-                    <i class="material-icons">credit_card</i>
+                    <i class="icon-credit-card"></i>
                     <div>Кошелек</div>
                 </div>
                 <div class="bottom-nav-element" data-link-section="personal">
-                    <i class="material-icons">assignment_ind</i>
+                    <i class="icon-id-card-o"></i>
                     <div>Профиль</div>
                 </div>
             </footer>

@@ -55,18 +55,8 @@
         height: 40px;
         color: rgb(78, 181, 230);
         position: relative;
-    
-        &.close_eye {
-            &::after {
-                content: "\\";
-                position: absolute;
-                top: -9px;
-                left: 13px;
-                font-weight: 900;
-                font-size: 33px;
-                transform: rotate(-30deg);
-            }
-        }
+        font-size: 1.25em;
+        top: -3px;
     }
     
     &.required {
