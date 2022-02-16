@@ -39,21 +39,26 @@ export function render() {
     });
 
     updateStoresData();
+    //getStoresList(1);
 }
 
-export function updateStoresData() {
+function updateStoresData() {
     if (!storesList.children.length) {
-        const city_id = false;
+        let city_id = false;
         getStores().then(result => {
             if (result.status) {
                 result.cities.forEach(city => {
                     let option = document.createElement("option");
                     option.value = city.id;
                     option.innerText = city.name;
+                    if (city.name === "Хабаровск") {//Заглушка
+                        option.setAttribute("selected", true);
+                    }
                     store_cities.appendChild(option);
                 });
                 city_id = result.cities[0].id;
-                getStoresList(city_id);
+                //getStoresList(city_id);
+                getStoresList(1);//Заглушка
             }
 
         }).catch(error => {
@@ -63,7 +68,7 @@ export function updateStoresData() {
     }
 }
 
-export function getStores() {
+function getStores() {
     return fetch(API_URL, {
         method: "POST",
         headers: {
@@ -81,7 +86,7 @@ export function getStores() {
     });
 }
 
-export async function getStoresList(city_id) {
+async function getStoresList(city_id) {
     let body = {
         "method": "getStoresList",
         "city_id": city_id

@@ -5,9 +5,10 @@ import { getSection } from '@/js/libs/storage.js'
 import { initPopups } from '@/js/libs/popups';
 import { findFunction, hideLoader, closeNav, remove } from '@/js/libs/functions.js'
 import { run } from '@/js/libs/router.js';
-import { checkAuthorization } from '@/js/libs/connections.js'
+import { checkAuthorization, setFeedback } from '@/js/libs/connections.js'
 import { animate, quad } from '@/js/libs/animate.js'
 import { Events } from '@/js/libs/Events.js'
+import { mask } from '@/js/libs/mask.js'
 
 let lastPhone = "";
 let secondsInterval = null;
@@ -32,17 +33,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     Event.clickLink = function (event) {
         let target = event.target;
-
+        
         while (target !== this) {
+            if (!target) {
+                return;
+            }
+            
             if (target.hasAttribute('data-link-section')) {
                 run(target.dataset.linkSection);
                 //return;
             }
 
             if (target.hasAttribute('data-click')) {
-                console.log(target.dataset.click);
                 let contrl = target.dataset.click.split('.');
                 findFunction(contrl[1], contrl[0]);
+                //return;
+            }
+            
+            if (target.id === "topnav-feedback" || target.id === "top-nav-msg") {
+                console.log('zhopa');
+                feedback.style.display = '';
+                return;
+            }
+            
+            if (target.id === "feedback-submit") {
+                setFeedback();
+                return;
+            }
+            
+            if (target.id === "closeFeedback") {
+                feedback.style.display = 'none';
                 return;
             }
 
@@ -58,12 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let section = getSection();
     checkAuthorization().then(result => {
         if (result.status) {
-            if (!feedback_form.getAttribute("phone") && result.data.phone) {
-                feedback_form.setAttribute("phone", result.data.phone);
-                let userName = result.data.firstname + " " + result.data.middlename;
-                feedback_form.src += "&answer_short_text_7059155=" + result.data.phone + (userName ? "&answer_short_text_96201=" + userName : "");
-            }
-
             if (["wallet", "news", "personal", "stores", "refer"].indexOf(section) === -1) {
                 section = "wallet";
             }
@@ -114,6 +128,7 @@ export function init() {
             item.classList.add("current-section");
         }
     });
+    mask(document.querySelector('#feedback-phone'), "+7 (___) ___ ____", 3);
     remove(".store_map");
     clearTimeout(window.walletUpdater);
     hideLoader();

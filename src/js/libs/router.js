@@ -45,6 +45,7 @@ function animatePage(template) {
                 if (oldPage) {
                     remove([oldPage]);
                 }
+                newPage.style.left = '0px';
                 newPage.classList.remove('newPage');
             } else {
                 newPage.style.left = (-width + i) + 'px';

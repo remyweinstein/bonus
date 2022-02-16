@@ -7,6 +7,54 @@ import { showPopup } from '@/js/libs/popups.js'
 import { showLoader, hideLoader } from '@/js/libs/functions.js'
 import { animate, quad } from '@/js/libs/animate.js'
 
+export function setFeedback() {
+    let feedbackSubmitButton = document.getElementById("feedback-submit");
+    feedbackSubmitButton.disabled = true;
+    showLoader();
+
+    API_setFeedback(JSON.stringify({
+        "method": "setFeedback",
+        "data": {
+            "name": document.getElementById("feedback-name").value,
+            "phone": document.getElementById("feedback-phone").value,
+            "email": document.getElementById("feedback-email").value,
+            "reason": document.getElementById("feedback-reason").value,
+            "message": document.getElementById("feedback-message").value
+        }
+    }))
+            .then(result => {
+                console.log(result);
+                if (result.status) {
+                    showPopup("Готово", "Ваше сообщение передано оператору");
+                    hideFeedback();
+                    document.getElementById("feedback-message").value = "";
+                } else {
+                    onErrorCatch(result);
+                }
+            })
+            .finally(() => {
+                feedbackSubmitButton.disabled = false;
+                hideLoader();
+            });
+}
+
+function API_setFeedback(body) {
+    return fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        },
+        body: body
+    })
+            .then(response => response.json())
+            .catch(error => {
+                return {
+                    status: false,
+                    description: error.message,
+                    error: error
+                };
+            });
+}
 
 export async function reg() {
     let trueDate = null;
