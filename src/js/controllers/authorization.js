@@ -29,16 +29,12 @@ export function render() {
         e.target.classList.remove("fail");
         auth_phone_popup.classList.remove("show");
     });
-    auth_phone.addEventListener("change", (e) => {
+    auth_phone.addEventListener("keydown", (e) => {
         wrapper_auth_phone.setAttribute("placeholder", changePlaceholderForPhone(e.target.value));
-        //reset_phone.value = auth_phone.value;
-    });
-    auth_phone.addEventListener("keyup", (e) => {
-        wrapper_auth_phone.setAttribute("placeholder", changePlaceholderForPhone(e.target.value));
-        //reset_phone.value = auth_phone.value;
     });
     auth_phone.addEventListener("input", (e) => {
         modifyInput(e.target);
+        wrapper_auth_phone.setAttribute("placeholder", changePlaceholderForPhone(e.target.value));
     });
     auth_pass.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");
