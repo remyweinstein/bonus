@@ -3,10 +3,21 @@
    =========================== */
 #wrapper_auth_phone {
     position: absolute;
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: 900;
 }
 #auth_phone {
     position: relative;
     background-color: rgb(255,255,255,0);
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: 900;
+}
+#auth_pass {
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: 900;    
 }
 .auth__inp {
     display: grid; 
