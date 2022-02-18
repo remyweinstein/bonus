@@ -1,7 +1,13 @@
 /* ==|========================
    Pages/Authorization
    =========================== */
-
+#wrapper_auth_phone {
+    position: absolute;
+}
+#auth_phone {
+    position: relative;
+    background-color: rgb(255,255,255,0);
+}
 .auth__inp {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr;

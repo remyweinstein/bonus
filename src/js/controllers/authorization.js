@@ -30,7 +30,11 @@ export function render() {
         auth_phone_popup.classList.remove("show");
     });
     auth_phone.addEventListener("change", (e) => {
-        //reg_phone.value = auth_phone.value;
+        wrapper_auth_phone.setAttribute("placeholder", changePlaceholderForPhone(e.target.value));
+        //reset_phone.value = auth_phone.value;
+    });
+    auth_phone.addEventListener("keyup", (e) => {
+        wrapper_auth_phone.setAttribute("placeholder", changePlaceholderForPhone(e.target.value));
         //reset_phone.value = auth_phone.value;
     });
     auth_phone.addEventListener("input", (e) => {
@@ -42,5 +46,8 @@ export function render() {
     });
     
     mask(document.querySelector('#auth_phone'), "+7 (___) ___ ____", 3);
+}
 
+function changePlaceholderForPhone(value) {
+    return value + "+7 (___) ___ ____".slice(value.length);
 }

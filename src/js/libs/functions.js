@@ -8,7 +8,9 @@ import { TERMS_URL, RULES_URL } from '@/js/config.js'
 import { getSection } from '@/js/libs/storage.js'
 
 export function modifyInput(el) {
-  if (el.value.length === 1 && +el.value[0] === 8) el.value = "+7-";
+  if (el.value.length === 1 && +el.value[0] === 8) {
+    el.value = "+7-";
+  }
 }
 
 export function changeTabs(target) {

@@ -3,11 +3,12 @@
           <p class="hero-heading">Введите ваш номер телефона и пароль</p>
           <!-- Номер телефона -->
           <div class="popup"><span class="popup-text" id="auth_phone_popup">Введите номер телефона</span></div>
-          <input class="u-full-width" type="text" placeholder="+7 (___) ___ ____" id="auth_phone" maxlength="17" autocomplete="off">
+          <input class="u-full-width" type="tel" id="wrapper_auth_phone" placeholder="+7 (___) ___ ____" maxlength="17" disabled>
+          <input class="u-full-width" type="tel" id="auth_phone" maxlength="17" autocomplete="new-password">
           <!-- Пароль -->
           <div class="popup"><span class="popup-text" id="auth_pass_popup">Введите пароль</span></div>
           <div class="auth__inp">
-            <input class="u-full-width" type="password" placeholder="Пароль" id="auth_pass">
+            <input class="u-full-width" type="password" placeholder="Пароль" id="auth_pass" autocomplete="new-password">
             <i id="auth_pass_toggle" class="icon-eye"></i>
           </div>
           <!-- Кнопки -->
