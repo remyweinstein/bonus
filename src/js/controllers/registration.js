@@ -5,6 +5,7 @@ import { updateCities } from '@/js/libs/connections.js'
 import { modifyInput } from '@/js/libs/functions.js'
 import { mask } from '@/js/libs/mask.js'
 import { siblings, addClass, togglePassword, changeTabs, removeClass } from '@/js/libs/functions.js'
+import { MASKPHONE } from '@/js/config.js';
 
 export function render() {
     Event.click = function (event) {
@@ -65,9 +66,9 @@ export function render() {
         e.target.classList.remove("fail");
         reg_birthdate_popup.classList.remove("show");
     });
-
-    mask(document.querySelector('#reg_phone'), "+7 (___) ___ ____", 3);
-    mask(document.querySelector('#reg_birthdate'), "__/__/____", 0);
+    reg_phone.setAttribute("placeholder", MASKPHONE);
+    mask(document.querySelector('#reg_phone'), MASKPHONE, 3);
+    mask(document.querySelector('#reg_birthdate'), "__/__/____");
     
     /*
     updateCities().then(result => {

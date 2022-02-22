@@ -4,7 +4,7 @@
 import { getBearerToken } from '@/js/libs/storage.js'
 import { showPopup } from '@/js/libs/popups.js'
 import { hideLoader, remove } from '@/js/libs/functions.js'
-import { API_URL } from '@/js/config.js'
+import { API_URL, MASKPHONE } from '@/js/config.js'
 
 export function render() {
     updatePersonalData();

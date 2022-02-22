@@ -1,6 +1,6 @@
 'use strict';
 
-import { routes, APP } from '@/js/config.js'
+import { routes, APP, MASKPHONE } from '@/js/config.js'
 import { getSection } from '@/js/libs/storage.js'
 import { initPopups } from '@/js/libs/popups';
 import { findFunction, hideLoader, closeNav, remove } from '@/js/libs/functions.js'
@@ -112,6 +112,8 @@ export function init() {
             });
         }
     });
+    
+    document.querySelector("#feedback-phone").setAttribute("placeholder", MASKPHONE);
 
     document.querySelector("#top-nav").style.display = (sections[section] && sections[section].title ? "" : "none");
     document.querySelector("#top-nav-back").style.display = (sections[section] && sections[section].prevSection ? "" : "none");
@@ -127,7 +129,7 @@ export function init() {
             item.classList.add("current-section");
         }
     });
-    mask(document.querySelector('#feedback-phone'), "+7 (___) ___ ____", 3);
+    mask(document.querySelector('#feedback-phone'), MASKPHONE, 3);
     remove(".store_map");
     clearTimeout(window.walletUpdater);
     hideLoader();

@@ -2,6 +2,7 @@
 
 import { modifyInput, togglePassword, addClass, removeClass, siblings, changeTabs } from '@/js/libs/functions.js'
 import { mask } from '@/js/libs/mask.js'
+import { MASKPHONE } from '@/js/config.js';
 
 export function render() {
     Event.click = function (event) {
@@ -25,25 +26,19 @@ export function render() {
         }
     };
 
+    mask(document.querySelector('#auth_phone'), MASKPHONE, 3);
     auth_phone.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");
         auth_phone_popup.classList.remove("show");
     });
-    auth_phone.addEventListener("keydown", (e) => {
-        wrapper_auth_phone.setAttribute("placeholder", changePlaceholderForPhone(e.target.value));
-    });
     auth_phone.addEventListener("input", (e) => {
         modifyInput(e.target);
-        wrapper_auth_phone.setAttribute("placeholder", changePlaceholderForPhone(e.target.value));
     });
     auth_pass.addEventListener("blur", (e) => {
         e.target.classList.remove("fail");
         auth_pass_popup.classList.remove("show");
     });
     
-    mask(document.querySelector('#auth_phone'), "+7 (___) ___ ____", 3);
 }
 
-function changePlaceholderForPhone(value) {
-    return value + "+7 (___) ___ ____".slice(value.length);
-}
+

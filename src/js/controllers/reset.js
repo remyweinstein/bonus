@@ -3,6 +3,7 @@
 import { modifyInput } from '@/js/libs/functions.js'
 import { showPopup } from '@/js/libs/popups.js'
 import { mask } from '@/js/libs/mask.js'
+import { MASKPHONE } from '@/js/config.js';
 
 export function render() {
     Event.click = function (event) {
@@ -29,19 +30,15 @@ export function render() {
         e.target.classList.remove("fail");
         reset_phone_popup.classList.remove("show");
     });
-    reset_phone.addEventListener("change", () => {
-        reg_phone.value = reset_phone.value;
-        auth_phone.value = reset_phone.value;
-    });
-    reset_phone.addEventListener("input", () => {
+    reset_phone.addEventListener("input", (e) => {
         reset_button.disabled = (reset_phone.value ? false : true);
         modifyInput(e.target);
     });
-    reset_confirmation_code.addEventListener("input", (e) => {
+    reset_confirmation_code.addEventListener("input", () => {
         reset_confirmation_button.disabled = (reset_confirmation_code.value.length === 4 ? false : true);
     });
-
-    mask(document.querySelector('#reset_phone'), "+7 (___) ___ ____", 3);
+    reset_phone.setAttribute("placeholder", MASKPHONE);
+    mask(document.querySelector('#reset_phone'), MASKPHONE, 3);
 }
 
 function canGetResetConfirmationCode() {

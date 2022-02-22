@@ -1,6 +1,7 @@
 export const cardImageW = 512;
 export const cardImageH = 328;
 export const cardImageSRC = "/assets/card_back.jpg";
+export const MASKPHONE = "+7(___)___-__-__";
 export const LS_LINK = "LS_walletData_081221_01";
 export const API_URL = "https://bonus.stolica-dv.ru/api";
 //export const API_URL = "/api";

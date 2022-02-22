@@ -1,0 +1,16 @@
+/* ==|========================
+   Elements/Mask
+   =========================== */
+.maskedHiddenInput {
+    position: absolute;
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: 900;
+}
+.maskedInput {
+    position: relative;
+    background-color: transparent!important;
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: 900;
+}
