@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //     });
     // }
     init();
+    
+    mask(document.querySelector('#feedback-phone'), MASKPHONE, 3);
 
     Event.clickLink = function (event) {
         let target = event.target;
@@ -113,8 +115,6 @@ export function init() {
         }
     });
     
-    document.querySelector("#feedback-phone").setAttribute("placeholder", MASKPHONE);
-
     document.querySelector("#top-nav").style.display = (sections[section] && sections[section].title ? "" : "none");
     document.querySelector("#top-nav-back").style.display = (sections[section] && sections[section].prevSection ? "" : "none");
     document.querySelector("#top-nav-msg").style.display = (sections[section] && !sections[section].prevSection ? "" : "none");
@@ -129,7 +129,7 @@ export function init() {
             item.classList.add("current-section");
         }
     });
-    mask(document.querySelector('#feedback-phone'), MASKPHONE, 3);
+
     remove(".store_map");
     clearTimeout(window.walletUpdater);
     hideLoader();
