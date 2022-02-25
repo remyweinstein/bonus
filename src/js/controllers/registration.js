@@ -66,9 +66,9 @@ export function render() {
         e.target.classList.remove("fail");
         reg_birthdate_popup.classList.remove("show");
     });
-    reg_phone.setAttribute("placeholder", MASKPHONE);
+    
     mask(document.querySelector('#reg_phone'), MASKPHONE, 3);
-    mask(document.querySelector('#reg_birthdate'), "__/__/____");
+    mask(document.querySelector('#reg_birthdate'), "__/__/____", 0);
     
     /*
     updateCities().then(result => {

@@ -25,6 +25,7 @@ export function mask(input, matrix, start=0, attr={}) {
     function maska(event) {
         event.keyCode && (keyCode = event.keyCode);
         var pos = this.selectionStart;
+
         if (pos < start) {
             event.preventDefault();
         }
@@ -44,7 +45,7 @@ export function mask(input, matrix, start=0, attr={}) {
         }).replace(/[+()]/g, "\\$&");
         reg = new RegExp("^" + reg + "$");
         
-        if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) {
+        if (!reg.test(this.value) || this.value.length < (start + 1) || keyCode > 47 && keyCode < 58) {
             this.value = new_value;
         }
         
